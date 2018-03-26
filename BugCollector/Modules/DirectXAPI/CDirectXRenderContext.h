@@ -15,4 +15,7 @@ public:
 
 	virtual void Initialize() override;
 
+
+	virtual void Present(TSharedPtr<CRenderTargetWindow> InRenderTarget) override;
+
 };

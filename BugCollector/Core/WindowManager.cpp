@@ -1,5 +1,5 @@
 #include "WindowManager.h"
-
+#include "RenderingAPI/CRenderManager.h"
 
 void CWindowManager::SetMainWindow(TSharedPtr<CRenderTargetWindow> InRenderTargetWindow)
 {
@@ -19,12 +19,12 @@ void CWindowManager::AddWindow(TSharedPtr<CRenderTargetWindow> InWindow)
 void CWindowManager::Render()
 {
 	/* Render the main window. */
-	MainWindow->Present();
+	CRenderManager::Instance().GetRenderContext()->Present(MainWindow);
 
 	/* Render all the child windows. */
 	for (u32 i = 0; i < Windows.Num(); i++)
 	{
 		TSharedPtr<CRenderTargetWindow> window = Windows[i];
-		window->Present();
+		CRenderManager::Instance().GetRenderContext()->Present(window);
 	}
 }

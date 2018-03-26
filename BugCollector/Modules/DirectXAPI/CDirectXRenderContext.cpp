@@ -15,6 +15,11 @@ void CDirectXRenderContext::Initialize()
 {
 }
 
+void CDirectXRenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget)
+{
+	InRenderTarget->Present();
+}
+
 CDirectXRenderContext::CDirectXRenderContext()
 {
 	
