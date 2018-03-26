@@ -40,7 +40,4 @@ public:
 
 	/* Present the back to front. */
 	virtual void SwapFrameBuffer();
-
-	/* Present the window */
-	virtual void Present();
 };

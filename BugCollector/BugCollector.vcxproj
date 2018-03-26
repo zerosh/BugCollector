@@ -142,11 +142,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />
     <ClCompile Include="Core\Profiler\CProfileManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />
+    <ClCompile Include="Editor\CEditorApplication.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp" />
   </ItemGroup>

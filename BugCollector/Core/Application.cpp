@@ -31,6 +31,10 @@ void CApplication::Initialize()
 	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 
+	mainWindow->SetVerticalSync(true);
+	mainWindow->SetUseGammaCorrection(false);
+	mainWindow->SetNumMultisamples(0);
+
 	CWindowManager::Instance().SetMainWindow(mainWindow);
 }
 
