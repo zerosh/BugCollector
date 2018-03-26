@@ -2,7 +2,6 @@
 #include "../Core.h"
 #include "IRenderContext.h"
 
-class CDirectXRenderContext;
 class CRenderManager : public CModule<CRenderManager>
 {
 private:
