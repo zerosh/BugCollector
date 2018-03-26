@@ -56,5 +56,11 @@
     <ClInclude Include="Core\CModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\RenderingAPI\CRenderTarget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

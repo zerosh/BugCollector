@@ -124,6 +124,8 @@
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Pointer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
+    <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />
+    <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h" />
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
