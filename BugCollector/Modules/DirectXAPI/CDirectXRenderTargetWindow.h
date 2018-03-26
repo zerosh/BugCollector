@@ -1,13 +1,16 @@
 #pragma once
 #include "../../Core/RenderingAPI/CRenderTargetWindow.h"
 #include "../../Core/Platform/Platform.h"
+#include "CD3DDevice.h"
 
 class CDirectXRenderTargetWindow : public CRenderTargetWindow
 {
 private:
 	CPlatformWindow PlatformWindow;
+	D3DDevice* m_device;
+
 public:
-	CDirectXRenderTargetWindow()
+	CDirectXRenderTargetWindow(D3DDevice* device)
 	{
 		// Temp setup to get started.
 		FPlatformWindowCreateInfo createInfo;
@@ -16,14 +19,23 @@ public:
 		createInfo.bEnableVerticalSync = true;
 		createInfo.Width = 1024;
 		createInfo.Height = 768;
-
+	
 		PlatformWindow.Initialize(createInfo);
+
+		m_device = device;
+
+		m_device->InitD3D11();
+		
+
+		
 	}
 
+	
 	virtual void SetFullscreen() override
 	{
+	 
 	}
-
+	
 
 	virtual void SetFullscreenWindow() override
 	{
@@ -32,6 +44,7 @@ public:
 
 	virtual void SetWindowed(u32 InW, u32 InH) override
 	{
+		
 	}
 
 
@@ -77,6 +90,11 @@ public:
 
 	virtual void Present() override
 	{
+		float clearColor[3] = { 1.0f,0.0f,0.0f };
+
+		m_device->m_deviceContext->ClearRenderTargetView(m_device->m_renderTargetView, clearColor);
+		
+		m_device->m_swapChain->Present(1, 0);
 	}
 
 };

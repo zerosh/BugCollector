@@ -43,6 +43,7 @@ public:
 
 	/* Get the window handle for this platform window */
 	HWND GetHandle() const;
+	
 };
 
 /* Handle for platform window. */

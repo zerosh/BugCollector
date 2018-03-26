@@ -7,8 +7,9 @@
 */
 class CRenderTargetWindow : public CRenderTarget
 {
+
 public:
-	/* Set fullscreen window. */
+		/* Set fullscreen window. */
 	virtual void SetFullscreen();
 
 	/* Set window fullscreen windowed. */
@@ -40,7 +41,4 @@ public:
 
 	/* Present the back to front. */
 	virtual void SwapFrameBuffer();
-
-	/* Present the window */
-	virtual void Present();
 };

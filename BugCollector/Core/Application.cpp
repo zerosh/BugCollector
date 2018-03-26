@@ -30,7 +30,16 @@ void CApplication::Initialize()
 	/* Temp rendering setup. */
 	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
+<<<<<<< HEAD
+	
+	
+=======
 
+	mainWindow->SetVerticalSync(true);
+	mainWindow->SetUseGammaCorrection(false);
+	mainWindow->SetNumMultisamples(0);
+
+>>>>>>> master
 	CWindowManager::Instance().SetMainWindow(mainWindow);
 }
 
@@ -41,7 +50,7 @@ void CApplication::Run()
 	{
 		PreUpdate();
 		PostUpdate();
-
+		
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
 	}

@@ -78,7 +78,7 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 		windowRect.bottom = InPlatformWindowCreateInfo.Height;
 	}
 
-	//check(AdjustWindowRectEx(&windowRect, dwStyle, FALSE, dwExStyle));
+	AdjustWindowRectEx(&windowRect, dwStyle, FALSE, dwExStyle);
 
 	HWND window = CreateWindowEx(dwExStyle, TEXT("BugCollector"), 0, dwStyle, windowRect.left, windowRect.top, windowRect.right, windowRect.bottom, 0, 0, WindowInstance, 0);
 

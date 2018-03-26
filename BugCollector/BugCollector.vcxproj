@@ -85,6 +85,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>dxgi.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,6 +115,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>dxgi.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -137,16 +141,19 @@
     <ClInclude Include="Core\TArray.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3DDevice.h" />
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h" />
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />
     <ClCompile Include="Core\Profiler\CProfileManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />
+    <ClCompile Include="Editor\CEditorApplication.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp" />
   </ItemGroup>

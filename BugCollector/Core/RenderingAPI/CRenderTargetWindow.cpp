@@ -4,7 +4,7 @@
 
 void CRenderTargetWindow::SetFullscreenWindow()
 {
-
+	
 }
 
 void CRenderTargetWindow::SetWindowed(u32 InW, u32 InH)
@@ -14,7 +14,6 @@ void CRenderTargetWindow::SetWindowed(u32 InW, u32 InH)
 
 void CRenderTargetWindow::SetVerticalSync(b8 InState)
 {
-
 }
 
 void CRenderTargetWindow::Resize(u32 InW, u32 InH)
@@ -53,12 +52,6 @@ void CRenderTargetWindow::SwapFrameBuffer()
 }
 
 void CRenderTargetWindow::SetFullscreen()
-{
-
-}
-
-
-void CRenderTargetWindow::Present()
 {
 
 }
