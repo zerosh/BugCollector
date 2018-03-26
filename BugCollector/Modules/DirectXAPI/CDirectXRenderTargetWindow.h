@@ -7,10 +7,12 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 {
 private:
 	CPlatformWindow PlatformWindow;
-	D3DDevice* m_device;
+	TSharedPtr<D3DDevice> m_device;
+
+	b8 isVSync = false;
 
 public:
-	CDirectXRenderTargetWindow(D3DDevice* device)
+	CDirectXRenderTargetWindow(TSharedPtr<D3DDevice> device)
 	{
 		// Temp setup to get started.
 		FPlatformWindowCreateInfo createInfo;
@@ -49,6 +51,10 @@ public:
 
 	virtual void SetVerticalSync(b8 InState) override
 	{
+		if (InState)
+			isVSync = true;
+		else
+			isVSync = false;
 	}
 
 
@@ -93,7 +99,10 @@ public:
 
 		m_device->m_deviceContext->ClearRenderTargetView(m_device->m_renderTargetView, clearColor);
 		
-		m_device->m_swapChain->Present(1, 0);
+		if(isVSync)
+			m_device->m_swapChain->Present(1, 0);
+		else
+			m_device->m_swapChain->Present(0, 0);
 	}
 
 };

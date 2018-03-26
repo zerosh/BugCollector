@@ -4,9 +4,9 @@
 
 TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
-	device = new D3DDevice();
+	m_device = std::make_shared<D3DDevice>();
 
-	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(device);
+	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(m_device);
 	
 	return TSharedPtr<CRenderTargetWindow>(window);
 }
@@ -18,7 +18,7 @@ CDirectXRenderContext::CDirectXRenderContext()
 
 CDirectXRenderContext::~CDirectXRenderContext()
 {
-	delete device;
+	
 }
 
 
