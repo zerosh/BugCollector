@@ -30,6 +30,12 @@
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\CApplication.h">
@@ -63,6 +69,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Platform\Platform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

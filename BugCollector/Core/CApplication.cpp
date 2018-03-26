@@ -26,7 +26,6 @@ void CApplication::Initialize()
 void CApplication::Run()
 {
 	/* The game loop goes inside here. */
-
 	while (bIsRunning)
 	{
 		PreUpdate();

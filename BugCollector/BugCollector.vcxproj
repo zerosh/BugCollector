@@ -122,6 +122,8 @@
     <ClInclude Include="Core\CBootstrap.h" />
     <ClInclude Include="Core\CModule.h" />
     <ClInclude Include="Core\Core.h" />
+    <ClInclude Include="Core\Platform\Platform.h" />
+    <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h" />
     <ClInclude Include="Core\Pointer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />
@@ -129,12 +131,16 @@
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
+    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h" />
+    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CApplication.cpp" />
+    <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

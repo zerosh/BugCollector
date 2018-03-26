@@ -11,7 +11,7 @@ public:
 	/* Set fullscreen window. */
 	virtual void SetFullscreen();
 
-	/* Set window fullscreen windoed. */
+	/* Set window fullscreen windowed. */
 	virtual void SetFullscreenWindow();
 
 	/* Set windoed mode for this window. */
