@@ -1,6 +1,6 @@
 #pragma once
 
-class D3DDevice
+class CD3DDevice
 {
 public:
 

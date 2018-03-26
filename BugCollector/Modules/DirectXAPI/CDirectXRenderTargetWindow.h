@@ -7,9 +7,9 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 {
 private:
 	CPlatformWindow PlatformWindow;
-	TSharedPtr<D3DDevice> m_device;
+	TSharedPtr<CD3DDevice> m_device;
 public:
-	CDirectXRenderTargetWindow(TSharedPtr<D3DDevice> device)
+	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice)
 	{
 		// Temp setup to get started.
 		FPlatformWindowCreateInfo createInfo;
@@ -21,7 +21,7 @@ public:
 	
 		PlatformWindow.Initialize(createInfo);
 
-		m_device = device;
+		m_device = InD3DDevice;
 
 		m_device->InitD3D11();
 		

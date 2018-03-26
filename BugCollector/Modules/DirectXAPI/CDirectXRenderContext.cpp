@@ -4,9 +4,9 @@
 
 TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
-	m_device = std::make_shared<D3DDevice>();
+	D3DDevice = std::make_shared<CD3DDevice>();
 
-	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(m_device);
+	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(D3DDevice);
 	
 	return TSharedPtr<CRenderTargetWindow>(window);
 }

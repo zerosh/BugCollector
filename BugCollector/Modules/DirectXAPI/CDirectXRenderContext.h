@@ -5,10 +5,8 @@
 class CDirectXRenderContext : public IRenderContext
 {
 
-private: 
-	//DDevice * device = nullptr;
-	TSharedPtr<D3DDevice> m_device;
-
+private:
+	TSharedPtr<CD3DDevice> D3DDevice;
 public:
 	CDirectXRenderContext();
 	~CDirectXRenderContext();
