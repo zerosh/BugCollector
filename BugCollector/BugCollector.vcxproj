@@ -128,7 +128,9 @@
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h" />
+    <ClInclude Include="Core\CWindowManager.h" />
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
+    <ClInclude Include="Core\TArray.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h" />
@@ -136,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CApplication.cpp" />
+    <ClCompile Include="Core\CWindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />

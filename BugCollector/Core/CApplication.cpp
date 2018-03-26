@@ -1,4 +1,5 @@
 #include "CApplication.h"
+#include "CWindowManager.h"
 
 #include "../Modules/DirectXAPI/CDirectXRenderContext.h"
 
@@ -21,10 +22,13 @@ void CApplication::Initialize()
 {
 	/* Initialize modules for the application. */
 	CRenderManager::StartModule();
+	CWindowManager::StartModule();
 
 	/* Temp rendering setup. */
 	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
+
+	CWindowManager::Instance().SetMainWindow(mainWindow);
 }
 
 void CApplication::Run()
@@ -34,5 +38,8 @@ void CApplication::Run()
 	{
 		PreUpdate();
 		PostUpdate();
+
+		/* Rendering all the windows. */
+		CWindowManager::Instance().Render();
 	}
 }

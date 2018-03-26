@@ -36,6 +36,9 @@
     <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\CWindowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\CApplication.h">
@@ -81,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\CWindowManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
