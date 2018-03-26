@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Core\CApplication.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

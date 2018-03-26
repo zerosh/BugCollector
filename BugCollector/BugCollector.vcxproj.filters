@@ -27,6 +27,9 @@
     <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\CApplication.h">

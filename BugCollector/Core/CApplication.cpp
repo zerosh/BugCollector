@@ -19,6 +19,8 @@ void CApplication::Quit()
 
 void CApplication::Initialize()
 {
+	/* Initialize modules for the application. */
+	CRenderManager::StartModule();
 }
 
 void CApplication::Run()

@@ -7,6 +7,15 @@ template <typename T>
 class CModule
 {
 public:
+	
+	/*
+		Create the module and register it with the module manager.
+	*/
+	static void StartModule()
+	{
+
+	}
+
 	static T& Instance()
 	{
 		static T instance;

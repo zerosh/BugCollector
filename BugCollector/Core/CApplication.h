@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.h"
+#include "RenderingAPI/CRenderManager.h"
 
 /*
 	Base engine application implementation.
