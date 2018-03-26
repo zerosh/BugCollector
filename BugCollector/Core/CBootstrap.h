@@ -1,5 +1,5 @@
 #pragma once
-#include "CApplication.h"
+#include "Application.h"
 
 /*
 	Main entry point of application.

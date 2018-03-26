@@ -5,6 +5,8 @@
 */
 
 #include "Types.h"
+#include "Memory.h"
+#include "Assertion.h"
 #include "Pointer.h"
 #include "CModule.h"
 #include "TArray.h"

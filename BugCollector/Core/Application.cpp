@@ -1,6 +1,7 @@
-#include "CApplication.h"
-#include "CWindowManager.h"
+#include "Application.h"
+#include "WindowManager.h"
 
+#include "Profiler/CProfileManager.h"
 #include "../Modules/DirectXAPI/CDirectXRenderContext.h"
 
 CApplication::CApplication()
@@ -21,8 +22,10 @@ void CApplication::Quit()
 void CApplication::Initialize()
 {
 	/* Initialize modules for the application. */
+	CDebugManager::StartModule();
 	CRenderManager::StartModule();
 	CWindowManager::StartModule();
+	CProfileManager::StartModule();
 
 	/* Temp rendering setup. */
 	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());

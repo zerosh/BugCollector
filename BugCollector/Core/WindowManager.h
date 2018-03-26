@@ -5,8 +5,10 @@
 class CWindowManager : public CModule<CWindowManager>
 {
 private:
+	/* Main window for the application. */
 	TSharedPtr<CRenderTargetWindow> MainWindow;
-
+	
+	/* Contains a list of all the windows except the main window. */
 	TArray<TSharedPtr<CRenderTargetWindow>> Windows;
 public:
 
@@ -19,6 +21,6 @@ public:
 	/* Add a window */
 	void AddWindow(TSharedPtr<CRenderTargetWindow> InWindow);
 
-	/* Update all windows */
+	/* Render all windows */
 	void Render();
 };

@@ -1,4 +1,4 @@
-#include "CWindowManager.h"
+#include "WindowManager.h"
 
 
 void CWindowManager::SetMainWindow(TSharedPtr<CRenderTargetWindow> InRenderTargetWindow)

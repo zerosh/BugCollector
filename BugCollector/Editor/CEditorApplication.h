@@ -1,5 +1,5 @@
 #pragma once
-#include "../Core/CApplication.h"
+#include "../Core/Application.h"
 
 class CEditorApplication : public CApplication
 {
