@@ -115,6 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\CApplication.h" />
+    <ClInclude Include="Core\CBootstrap.h" />
+    <ClInclude Include="Editor\CEditorApplication.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Core\CApplication.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
