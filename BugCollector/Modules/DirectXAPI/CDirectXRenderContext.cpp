@@ -20,6 +20,11 @@ void CDirectXRenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarg
 	InRenderTarget->Present();
 }
 
+TSharedPtr<CVertexBuffer> CDirectXRenderContext::CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo)
+{
+	throw std::logic_error("The method or operation is not implemented.");
+}
+
 CDirectXRenderContext::CDirectXRenderContext()
 {
 	

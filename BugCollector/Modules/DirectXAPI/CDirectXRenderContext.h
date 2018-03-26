@@ -18,4 +18,7 @@ public:
 
 	virtual void Present(TSharedPtr<CRenderTargetWindow> InRenderTarget) override;
 
+
+	virtual TSharedPtr<CVertexBuffer> CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo) override;
+
 };
