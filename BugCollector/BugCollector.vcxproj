@@ -120,10 +120,17 @@
   <ItemGroup>
     <ClInclude Include="Core\CApplication.h" />
     <ClInclude Include="Core\CBootstrap.h" />
+    <ClInclude Include="Core\CModule.h" />
+    <ClInclude Include="Core\Core.h" />
+    <ClInclude Include="Core\Pointer.h" />
+    <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
+    <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
+    <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\CApplication.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CRenderManager.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
