@@ -12,4 +12,7 @@ public:
 	~CDirectXRenderContext();
 	virtual TSharedPtr<CRenderTargetWindow> CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow = nullptr) override;
 
+
+	virtual void Initialize() override;
+
 };

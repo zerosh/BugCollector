@@ -11,6 +11,10 @@ TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(
 	return TSharedPtr<CRenderTargetWindow>(window);
 }
 
+void CDirectXRenderContext::Initialize()
+{
+}
+
 CDirectXRenderContext::CDirectXRenderContext()
 {
 	
