@@ -27,7 +27,6 @@ public:
 		m_device->InitD3D11();
 		
 
-		
 	}
 
 	
