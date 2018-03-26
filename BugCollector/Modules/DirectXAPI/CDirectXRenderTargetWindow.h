@@ -8,9 +8,6 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<D3DDevice> m_device;
-
-	b8 isVSync = false;
-
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<D3DDevice> device)
 	{
@@ -51,10 +48,6 @@ public:
 
 	virtual void SetVerticalSync(b8 InState) override
 	{
-		if (InState)
-			isVSync = true;
-		else
-			isVSync = false;
 	}
 
 
@@ -98,8 +91,8 @@ public:
 		float clearColor[3] = { 1.0f,0.0f,0.0f };
 
 		m_device->m_deviceContext->ClearRenderTargetView(m_device->m_renderTargetView, clearColor);
-		
-		if(isVSync)
+
+		if(bUseVerticalSync)
 			m_device->m_swapChain->Present(1, 0);
 		else
 			m_device->m_swapChain->Present(0, 0);
