@@ -7,7 +7,18 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 public:
+	CDirectXRenderTargetWindow()
+	{
+		// Temp setup to get started.
+		FPlatformWindowCreateInfo createInfo;
+		createInfo.bCreateDebugWindow = false;
+		createInfo.bEnableDebugging = false;
+		createInfo.bEnableVerticalSync = true;
+		createInfo.Width = 1024;
+		createInfo.Height = 768;
 
+		PlatformWindow.Initialize(createInfo);
+	}
 
 	virtual void SetFullscreen() override
 	{
