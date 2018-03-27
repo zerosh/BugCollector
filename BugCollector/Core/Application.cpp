@@ -31,24 +31,18 @@ void CApplication::Initialize()
 
 	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CDirectXRenderContext()));
 
-
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
-
 	mainWindow->SetVerticalSync(true);
-	mainWindow->SetUseGammaCorrection(false);
-	mainWindow->SetNumMultisamples(0);
 
 	CWindowManager::Instance().SetMainWindow(mainWindow);
+
 	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(mainWindow);
-
-
+	second->SetVerticalSync(true);
 	CWindowManager::Instance().AddWindow(second);
 
-	
-
-	
-	
-	
+	auto third = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(second);
+	third->SetVerticalSync(true);
+	CWindowManager::Instance().AddWindow(third);
 }
 
 void CApplication::Run()

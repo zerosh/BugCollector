@@ -7,11 +7,7 @@ class CDirectXRenderContext : public IRenderContext
 {
 private: 
 	TSharedPtr<CD3DDevice> D3DDevice;
-	
 	void CreateAndSetDevice();
-
-
-
 public:
 	CDirectXRenderContext();
 	~CDirectXRenderContext();

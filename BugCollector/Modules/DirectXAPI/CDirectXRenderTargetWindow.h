@@ -8,8 +8,6 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> D3DDevice;
-	 u32 swapChainCount = 1;
-	 static u32 numWindows;
 
 	 IDXGISwapChain1* m_SwapChain = nullptr;
 	 ID3D11RenderTargetView* m_RederTargetView = nullptr;
@@ -22,12 +20,12 @@ public:
 	~CDirectXRenderTargetWindow();
 
 private:
-	void CreateSwapChain(HWND handle, u32 inWindowWidth, u32 inWindowHeight);
+	void CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight);
 	
 	void CreateRenderTargetView();
 	void SetRenderTargetView();
 	
-	void CreateAndSetViewPort(u32 inWindowWidth, u32 inWindowHeight);
+	void CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight);
 
 public:
 

@@ -31,13 +31,13 @@ CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
 	
 }
 
-void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, u32 inWindowWidth, u32 inWindowHeight)
+void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
 {
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
 
-	sd.Width = inWindowWidth; //TODO: GetWindowWidth
-	sd.Height = inWindowHeight;
+	sd.Width = InWindowWidth;
+	sd.Height = InWindowHeight;
 	sd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	sd.Stereo = FALSE;
 	sd.SampleDesc.Count = 1;
@@ -95,11 +95,11 @@ void CDirectXRenderTargetWindow::SetRenderTargetView()
 	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &m_RederTargetView, nullptr);
 }
 
-void CDirectXRenderTargetWindow::CreateAndSetViewPort(u32 inWindowWidth, u32 inWindowHeight)
+void CDirectXRenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight)
 {
 	D3D11_VIEWPORT vp;
-	vp.Width = (FLOAT)inWindowWidth;
-	vp.Height = (FLOAT)inWindowHeight;
+	vp.Width = (FLOAT)InWindowWidth;
+	vp.Height = (FLOAT)InWindowHeight;
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
