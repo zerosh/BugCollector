@@ -10,8 +10,6 @@ public:
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 	ID3D11Texture2D* pBackBuffer = nullptr;
 
-
-
 	~CD3DDevice()
 	{
 		m_deviceContext->Release();

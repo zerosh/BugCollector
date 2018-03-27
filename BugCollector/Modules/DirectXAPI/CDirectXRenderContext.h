@@ -5,11 +5,8 @@
 
 class CDirectXRenderContext : public IRenderContext
 {
-private:
-	
-
 private: 
-	TSharedPtr<CD3DDevice> m_device;
+	TSharedPtr<CD3DDevice> D3DDevice;
 	
 	void CreateAndSetDevice();
 	void CreateAndSetBackSwapChain();

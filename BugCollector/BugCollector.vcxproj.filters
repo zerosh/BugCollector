@@ -51,6 +51,9 @@
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor\CEditorApplication.h">

@@ -4,13 +4,13 @@
 
 TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
-	m_device = TSharedPtr<CD3DDevice>(new CD3DDevice());
+	D3DDevice = TSharedPtr<CD3DDevice>(new CD3DDevice());
 	
 	// Now you can Create the Device before the PlatformWindow
 
 	CreateAndSetDevice();
 
-	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(m_device));
+	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(D3DDevice));
 
 	CreateAndSetBackSwapChain();
 	CreateAndSetRenderTargetView();
@@ -43,15 +43,13 @@ void CDirectXRenderContext::CreateAndSetDevice()
 	const auto featureLevel = D3D_FEATURE_LEVEL_11_1;
 	D3D_FEATURE_LEVEL fl;
 	auto res = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_DEBUG, &featureLevel, 1,
-		D3D11_SDK_VERSION, &device, &fl, &m_device->m_deviceContext);
+		D3D11_SDK_VERSION, &device, &fl, &D3DDevice->m_deviceContext);
 
 	if (res == S_FALSE)
 		__debugbreak();
 
 
-	m_device->m_nativeD3DDevice = device;
-
-
+	D3DDevice->m_nativeD3DDevice = device;
 }
 
 void CDirectXRenderContext::CreateAndSetBackSwapChain()
@@ -76,7 +74,7 @@ void CDirectXRenderContext::CreateAndSetBackSwapChain()
 	IDXGIDevice* dxgiDevice = nullptr;
 	HRESULT hr;
 
-	if (FAILED(hr = m_device->m_nativeD3DDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice))))
+	if (FAILED(hr = D3DDevice->m_nativeD3DDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice))))
 	{
 		__debugbreak();
 	}
@@ -94,7 +92,7 @@ void CDirectXRenderContext::CreateAndSetBackSwapChain()
 	}
 	
 	// Try to Create a Swapchain from DXGIFactory
-	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, GetActiveWindow(), &sd, nullptr, nullptr, &m_device->m_swapChain)))
+	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, GetActiveWindow(), &sd, nullptr, nullptr, &D3DDevice->m_swapChain)))
 	{
 		__debugbreak();
 	}
@@ -106,12 +104,12 @@ void CDirectXRenderContext::CreateAndSetBackSwapChain()
 
 void CDirectXRenderContext::CreateAndSetRenderTargetView()
 {
-	m_device->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&m_device->pBackBuffer);
+	D3DDevice->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&D3DDevice->pBackBuffer);
 	
-	if (FAILED(m_device->m_nativeD3DDevice->CreateRenderTargetView(m_device->pBackBuffer, nullptr, &m_device->m_renderTargetView)))
+	if (FAILED(D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(D3DDevice->pBackBuffer, nullptr, &D3DDevice->m_renderTargetView)))
 		__debugbreak();
 
-	m_device->m_deviceContext->OMSetRenderTargets(1, &m_device->m_renderTargetView, nullptr);
+	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &D3DDevice->m_renderTargetView, nullptr);
 
 }
 
@@ -125,7 +123,7 @@ void CDirectXRenderContext::CreateAndSetViewPort()
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
-	m_device->m_deviceContext->RSSetViewports(1, &vp);
+	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
 
 }
 
@@ -136,7 +134,4 @@ CDirectXRenderContext::CDirectXRenderContext()
 
 CDirectXRenderContext::~CDirectXRenderContext()
 {
-	int a = 3;
 }
-
-
