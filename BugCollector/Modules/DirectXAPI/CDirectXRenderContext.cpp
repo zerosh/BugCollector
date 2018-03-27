@@ -4,12 +4,6 @@
 
 TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
-	D3DDevice = TSharedPtr<CD3DDevice>(new CD3DDevice());
-	
-	// Now you can Create the Device before the PlatformWindow
-
-	CreateAndSetDevice();
-
 	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(D3DDevice));
 
 	CreateAndSetBackSwapChain();
@@ -22,7 +16,8 @@ TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(
 
 void CDirectXRenderContext::Initialize()
 {
-
+	D3DDevice = TSharedPtr<CD3DDevice>(new CD3DDevice());
+	CreateAndSetDevice();
 }
 
 void CDirectXRenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget)
@@ -129,7 +124,6 @@ void CDirectXRenderContext::CreateAndSetViewPort()
 
 CDirectXRenderContext::CDirectXRenderContext()
 { 
-	 
 }
 
 CDirectXRenderContext::~CDirectXRenderContext()
