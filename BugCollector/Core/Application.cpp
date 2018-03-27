@@ -42,9 +42,12 @@ void CApplication::Initialize()
 	CWindowManager::Instance().SetMainWindow(mainWindow);
 
 	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(mainWindow);
+
+	second->SetVerticalSync(true);
 	CWindowManager::Instance().AddWindow(second);
 
 	auto second1 = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(second);
+	second1->SetVerticalSync(true);
 	CWindowManager::Instance().AddWindow(second1);
 
 	

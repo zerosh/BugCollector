@@ -7,7 +7,7 @@ HWND CDirectXRenderTargetWindow::windowHandels[3] = { nullptr, nullptr, nullptr 
 CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
-
+	
 	// Temp setup to get started.
 	FPlatformWindowCreateInfo createInfo;
 	createInfo.bCreateDebugWindow = false;
@@ -15,7 +15,7 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	createInfo.bEnableVerticalSync = true;
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
-
+	
 	CDirectXRenderTargetWindow *ParentWindow = static_cast<CDirectXRenderTargetWindow*>(InParentWindow.get());
 
 	if (ParentWindow)
@@ -27,8 +27,6 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 
 	// TODO (montify): Find out the numbers of HANDLES for the Array - avoid MagicNumbers :(
 
-	HWND handles[3] = { nullptr, nullptr, nullptr };
-	
 	if (ParentWindow)
 	{
 		windowHandels[CDirectXRenderTargetWindow::numWindows-1] = PlatformWindow.GetHandle();
@@ -41,10 +39,10 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 		CDirectXRenderTargetWindow::numWindows++;
 		windowHandels[0] = PlatformWindow.GetHandle();
 	
+		// note(alex): At this point we have 1 swapchain, i set it to two because the for loop underneath substract -1...
 		swapChainCount = 2;
 	}
 	
-
 
 	for (u32 i = 0; i < swapChainCount-1; i++)
 	{
@@ -53,7 +51,7 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	}
 
 
-	//CreateAndSetViewPort(createInfo.Width, createInfo.Height);
+	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 }
 
 CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
@@ -158,7 +156,7 @@ void CDirectXRenderTargetWindow::SetWindowed(u32 InW, u32 InH)
 
 void CDirectXRenderTargetWindow::SetVerticalSync(b8 InState)
 {
-
+	bUseVerticalSync = InState;
 }
 
 void CDirectXRenderTargetWindow::Resize(u32 InW, u32 InH)
