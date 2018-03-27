@@ -14,6 +14,11 @@ public:
 		Data.push_back(InValue);
 	}
 
+	void Add(T &InValue)
+	{
+		Data.push_back(InValue);
+	}
+
 	/* Get the number of elements for this array. */
 	u32 Num() const
 	{

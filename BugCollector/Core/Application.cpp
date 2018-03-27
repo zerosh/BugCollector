@@ -12,7 +12,6 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-
 }
 
 void CApplication::Quit()
