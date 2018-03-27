@@ -56,5 +56,5 @@ void CApplication::Run()
 		CWindowManager::Instance().Render();
 	}
 
-
+	
 }
