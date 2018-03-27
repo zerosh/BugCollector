@@ -9,9 +9,7 @@ private:
 	TSharedPtr<CD3DDevice> D3DDevice;
 	
 	void CreateAndSetDevice();
-	void CreateAndSetBackSwapChain();
-	void CreateAndSetRenderTargetView();
-	void CreateAndSetViewPort();
+
 
 
 public:

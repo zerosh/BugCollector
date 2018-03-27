@@ -24,10 +24,88 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	//createInfo.ParentWindowHandle 
 
 	PlatformWindow.Initialize(createInfo);
+
+	CreateAndSetBackSwapChain();
+	CreateAndSetRenderTargetView();
+	CreateAndSetViewPort();
 }
 
 CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
 {
+
+}
+
+
+void CDirectXRenderTargetWindow::CreateAndSetBackSwapChain()
+{
+	DXGI_SWAP_CHAIN_DESC1 sd;
+	ZeroMemory(&sd, sizeof(sd));
+
+	sd.Width = 800; //TODO: GetWindowWidth
+	sd.Height = 600;
+	sd.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	sd.Stereo = FALSE;
+	sd.SampleDesc.Count = 1;
+	sd.SampleDesc.Quality = 0;
+	sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	sd.BufferCount = 1;
+	sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	sd.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
+
+
+	// Grab the DXGI Factory
+
+	IDXGIDevice* dxgiDevice = nullptr;
+	HRESULT hr;
+
+	if (FAILED(hr = D3DDevice->m_nativeD3DDevice->QueryInterface(__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgiDevice))))
+	{
+		__debugbreak();
+	}
+
+	IDXGIAdapter* dxgiAdapter = nullptr;
+	if (FAILED(hr = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&dxgiAdapter))))
+	{
+		__debugbreak();
+	}
+
+	IDXGIFactory2* dxgiFactory = nullptr;
+	if (FAILED(hr = dxgiAdapter->GetParent(__uuidof(IDXGIFactory2), reinterpret_cast<void**>(&dxgiFactory))))
+	{
+		__debugbreak();
+	}
+
+	// Try to Create a Swapchain from DXGIFactory
+	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, GetActiveWindow(), &sd, nullptr, nullptr, &D3DDevice->m_swapChain)))
+	{
+		__debugbreak();
+	}
+
+	dxgiDevice->Release();
+	dxgiAdapter->Release();
+	dxgiFactory->Release();
+}
+
+void CDirectXRenderTargetWindow::CreateAndSetRenderTargetView()
+{
+	D3DDevice->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&D3DDevice->pBackBuffer);
+
+	if (FAILED(D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(D3DDevice->pBackBuffer, nullptr, &D3DDevice->m_renderTargetView)))
+		__debugbreak();
+
+	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &D3DDevice->m_renderTargetView, nullptr);
+}
+
+void CDirectXRenderTargetWindow::CreateAndSetViewPort()
+{
+	D3D11_VIEWPORT vp;
+	vp.Width = (FLOAT)800;
+	vp.Height = (FLOAT)600;
+	vp.MinDepth = 0.0f;
+	vp.MaxDepth = 1.0f;
+	vp.TopLeftX = 0;
+	vp.TopLeftY = 0;
+	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
 
 }
 

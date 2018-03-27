@@ -13,6 +13,13 @@ public:
 
 	~CDirectXRenderTargetWindow();
 
+private:
+	void CreateAndSetBackSwapChain();
+	void CreateAndSetRenderTargetView();
+	void CreateAndSetViewPort();
+
+public:
+
 	virtual void DispatchWindowsMessage() override;
 
 	virtual void SetFullscreen() override;
