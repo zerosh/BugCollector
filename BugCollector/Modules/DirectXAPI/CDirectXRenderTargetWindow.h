@@ -9,8 +9,12 @@ private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> D3DDevice;
 	 u32 swapChainCount = 1;
-	 static HWND windowHandels[3];
-     static u32 numWindows;
+	 static u32 numWindows;
+
+	 IDXGISwapChain1* m_SwapChain = nullptr;
+	 ID3D11RenderTargetView* m_RederTargetView = nullptr;
+	 ID3D11Texture2D* m_BackBuffer = nullptr;
+	 ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
@@ -18,10 +22,10 @@ public:
 	~CDirectXRenderTargetWindow();
 
 private:
-	void CreateSwapChain(HWND handle, IDXGISwapChain1** swapChain, u32 inWindowWidth, u32 inWindowHeight);
+	void CreateSwapChain(HWND handle, u32 inWindowWidth, u32 inWindowHeight);
 	
-	void CreateRenderTargetView(IDXGISwapChain1* inSwapChain, ID3D11RenderTargetView** renderTargetView);
-	void SetRenderTargetView(ID3D11RenderTargetView** renderTargetView, u32 inNumRenderTargets);
+	void CreateRenderTargetView();
+	void SetRenderTargetView();
 	
 	void CreateAndSetViewPort(u32 inWindowWidth, u32 inWindowHeight);
 

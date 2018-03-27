@@ -52,4 +52,5 @@ CDirectXRenderContext::CDirectXRenderContext()
 
 CDirectXRenderContext::~CDirectXRenderContext()
 {
+	
 }
