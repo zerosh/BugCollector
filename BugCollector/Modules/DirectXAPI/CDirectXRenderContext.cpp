@@ -4,7 +4,7 @@
 
 TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
-	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(D3DDevice));
+	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(D3DDevice, InParentWindow));
 
 	CreateAndSetBackSwapChain();
 	CreateAndSetRenderTargetView();
