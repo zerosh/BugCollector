@@ -8,8 +8,9 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> D3DDevice;
-
-	u32 swapChainCount;
+	 u32 swapChainCount = 1;
+	 static HWND windowHandels[3];
+     static u32 numWindows;
 
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
@@ -28,8 +29,9 @@ public:
 
 	virtual void DispatchWindowsMessage() override;
 
-	virtual void SetFullscreen() override;
 
+	virtual void SetFullscreen() override;
+	
 
 	virtual void SetFullscreenWindow() override;
 
@@ -63,4 +65,4 @@ public:
 
 	virtual void Present() override;
 
-};
+}; 

@@ -1,6 +1,8 @@
 #include "CDirectXRenderTargetWindow.h"
 
+u32 CDirectXRenderTargetWindow::numWindows = 1;
 
+HWND CDirectXRenderTargetWindow::windowHandels[3] = { nullptr, nullptr, nullptr };
 
 CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
@@ -13,49 +15,51 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	createInfo.bEnableVerticalSync = true;
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
-	
+
 	CDirectXRenderTargetWindow *ParentWindow = static_cast<CDirectXRenderTargetWindow*>(InParentWindow.get());
 
 	if (ParentWindow)
 	{
-		createInfo.ParentWindowHandle = ParentWindow;	
+		createInfo.ParentWindowHandle = ParentWindow;
 	}
 
 	PlatformWindow.Initialize(createInfo);
 
 	// TODO (montify): Find out the numbers of HANDLES for the Array - avoid MagicNumbers :(
 
-	HWND handles[2] = { nullptr, nullptr };
-
+	HWND handles[3] = { nullptr, nullptr, nullptr };
+	
 	if (ParentWindow)
 	{
-		handles[0] = PlatformWindow.GetHandle();
-		handles[1] = ParentWindow->PlatformWindow.GetHandle();
+		windowHandels[CDirectXRenderTargetWindow::numWindows-1] = PlatformWindow.GetHandle();
 
-		swapChainCount = 2;
+		CDirectXRenderTargetWindow::numWindows++;
+		swapChainCount = CDirectXRenderTargetWindow::numWindows;
 	}
 	else
 	{
-		handles[0] = PlatformWindow.GetHandle();
-		swapChainCount = 1;
-	}
-
-
-	for (u32 i = 0; i < swapChainCount; i++)
-	{
-		CreateSwapChain(handles[i], &D3DDevice->m_swapChain[i], createInfo.Width, createInfo.Height);
-		CreateRenderTargetView(D3DDevice->m_swapChain[i], &D3DDevice->m_renderTargetView[i]);
+		CDirectXRenderTargetWindow::numWindows++;
+		windowHandels[0] = PlatformWindow.GetHandle();
+	
+		swapChainCount = 2;
 	}
 	
+
+
+	for (u32 i = 0; i < swapChainCount-1; i++)
+	{
+		CreateSwapChain(windowHandels[i], &D3DDevice->m_swapChain[i], createInfo.Width, createInfo.Height);
+		CreateRenderTargetView(D3DDevice->m_swapChain[i], &D3DDevice->m_renderTargetView[i]);
+	}
+
 
 	//CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 }
 
 CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
 {
-
+	
 }
-
 
 void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, IDXGISwapChain1** inSwapChain, u32 inWindowWidth, u32 inWindowHeight)
 {
@@ -234,22 +238,28 @@ void CDirectXRenderTargetWindow::SwapFrameBuffer()
 void CDirectXRenderTargetWindow::Present()
 {
 
-		for (u32 i = 0; i < swapChainCount; i++)
+		for (u32 i = 0; i < swapChainCount-1; i++)
 		{
 			SetRenderTargetView(&D3DDevice->m_renderTargetView[i], 1);
 			float clearColor[3] = {0,0,0};
 
-			if (i % 2 == 0)
+			if (i == 0)
 			{
 				clearColor[0] = 1.0f;
 				clearColor[1] = 0.0f;
 				clearColor[2] = 0.0f;
 			}
-			else
+			else if(i == 1)
 			{
 				clearColor[0] = 1.0f;
 				clearColor[1] = 1.0f;
 				clearColor[2] = 0.0f;
+			}
+			else if (i == 2)
+			{
+				clearColor[0] = 1.0f;
+				clearColor[1] = 0.0f;
+				clearColor[2] = 1.0f;
 			}
 
 			D3DDevice->m_deviceContext->ClearRenderTargetView(D3DDevice->m_renderTargetView[i], clearColor);
