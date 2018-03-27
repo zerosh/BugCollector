@@ -6,15 +6,16 @@ TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(
 {
 	m_device = TSharedPtr<CD3DDevice>(new CD3DDevice());
 	
-	CreateDevice();
+	// Now you can Create the Device before the PlatformWindow
+
+	CreateAndSetDevice();
 
 	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(m_device);
 
-	CreateBackSwapChain();
-	CreateRenderTargetView();
-	SetRenderTarget();
-	SetViewPort();
-
+	CreateAndSetBackSwapChain();
+	CreateAndSetRenderTargetView();
+	CreateAndSetViewPort();
+	
 	return TSharedPtr<CRenderTargetWindow>(window);
 }
 
@@ -34,7 +35,7 @@ TSharedPtr<CVertexBuffer> CDirectXRenderContext::CreateVertexBuffer(const FVerte
 	throw std::logic_error("The method or operation is not implemented.");
 }
 
-void CDirectXRenderContext::CreateDevice()
+void CDirectXRenderContext::CreateAndSetDevice()
 {
 	ID3D11Device* device = nullptr;
 
@@ -52,7 +53,7 @@ void CDirectXRenderContext::CreateDevice()
 
 }
 
-void CDirectXRenderContext::CreateBackSwapChain()
+void CDirectXRenderContext::CreateAndSetBackSwapChain()
 {
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
@@ -102,23 +103,19 @@ void CDirectXRenderContext::CreateBackSwapChain()
 	dxgiFactory->Release();
 }
 
-void CDirectXRenderContext::CreateRenderTargetView()
+void CDirectXRenderContext::CreateAndSetRenderTargetView()
 {
-	//m_device->pBackBuffer = 
-	
 	m_device->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&m_device->pBackBuffer);
 	
 	if (FAILED(m_device->m_nativeD3DDevice->CreateRenderTargetView(m_device->pBackBuffer, nullptr, &m_device->m_renderTargetView)))
 		__debugbreak();
 
-}
-
-void CDirectXRenderContext::SetRenderTarget()
-{
 	m_device->m_deviceContext->OMSetRenderTargets(1, &m_device->m_renderTargetView, nullptr);
+
 }
 
-void CDirectXRenderContext::SetViewPort()
+
+void CDirectXRenderContext::CreateAndSetViewPort()
 {
 	D3D11_VIEWPORT vp;
 	vp.Width = (FLOAT)800;

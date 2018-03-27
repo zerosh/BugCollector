@@ -83,7 +83,7 @@ public:
 
 	virtual void Present() override
 	{
-		float clearColor[3] = { 1.0f,0.0f,0.0f };
+		float clearColor[3] = { 1.0f,1.0f,0.0f };
 
 		m_device->m_deviceContext->ClearRenderTargetView(m_device->m_renderTargetView, clearColor);
 
