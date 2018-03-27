@@ -14,10 +14,6 @@ CApplication::~CApplication()
 {
 }
 
-void CApplication::Quit()
-{
-	bIsRunning = false;
-}
 
 void CApplication::Initialize()
 {
@@ -27,23 +23,21 @@ void CApplication::Initialize()
 	CWindowManager::StartModule();
 	CProfileManager::StartModule();
 
-	/* Temp rendering setup. */
-
+	
+	/* Setting up the default application window. */
 	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CDirectXRenderContext()));
 
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 	mainWindow->SetVerticalSync(true);
-
 	CWindowManager::Instance().SetMainWindow(mainWindow);
-
-	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(mainWindow);
-	second->SetVerticalSync(true);
-	CWindowManager::Instance().AddWindow(second);
-
-	auto third = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(second);
-	third->SetVerticalSync(true);
-	CWindowManager::Instance().AddWindow(third);
 }
+
+
+void CApplication::Quit()
+{
+	bIsRunning = false;
+}
+
 
 void CApplication::Run()
 {

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Core/Application.h"
+#include "../Core/WindowManager.h"
 
 class CEditorApplication : public CApplication
 {

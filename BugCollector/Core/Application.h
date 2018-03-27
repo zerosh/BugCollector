@@ -14,14 +14,14 @@ public:
 	CApplication();
 	~CApplication();
 
-	/* Quit the application. */
-	virtual void Quit();
-
 	/* Initialize the application. */
 	virtual void Initialize();
 
 	virtual void PreUpdate() = 0;
 	virtual void PostUpdate() = 0;
+
+	/* Quit the application. */
+	virtual void Quit();
 
 	void Run();
 };
