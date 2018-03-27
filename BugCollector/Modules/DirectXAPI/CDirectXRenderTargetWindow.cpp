@@ -13,21 +13,42 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	createInfo.bEnableVerticalSync = true;
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
-
+	
 	CDirectXRenderTargetWindow *ParentWindow = static_cast<CDirectXRenderTargetWindow*>(InParentWindow.get());
 
 	if (ParentWindow)
 	{
-		createInfo.ParentWindowHandle = ParentWindow;
+		createInfo.ParentWindowHandle = ParentWindow;	
 	}
-
-	//createInfo.ParentWindowHandle 
 
 	PlatformWindow.Initialize(createInfo);
 
-	CreateAndSetBackSwapChain(createInfo.Width, createInfo.Height);
-	CreateAndSetRenderTargetView();
-	CreateAndSetViewPort(createInfo.Width, createInfo.Height);
+	// TODO (montify): Find out the numbers of HANDLES for the Array - avoid MagicNumbers :(
+
+	HWND handles[2] = { nullptr, nullptr };
+
+	if (ParentWindow)
+	{
+		handles[0] = PlatformWindow.GetHandle();
+		handles[1] = ParentWindow->PlatformWindow.GetHandle();
+
+		swapChainCount = 2;
+	}
+	else
+	{
+		handles[0] = PlatformWindow.GetHandle();
+		swapChainCount = 1;
+	}
+
+
+	for (u32 i = 0; i < swapChainCount; i++)
+	{
+		CreateSwapChain(handles[i], &D3DDevice->m_swapChain[i], createInfo.Width, createInfo.Height);
+		CreateRenderTargetView(D3DDevice->m_swapChain[i], &D3DDevice->m_renderTargetView[i]);
+	}
+	
+
+	//CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 }
 
 CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
@@ -36,7 +57,7 @@ CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
 }
 
 
-void CDirectXRenderTargetWindow::CreateAndSetBackSwapChain(u32 inWindowWidth, u32 inWindowHeight)
+void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, IDXGISwapChain1** inSwapChain, u32 inWindowWidth, u32 inWindowHeight)
 {
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
@@ -75,8 +96,7 @@ void CDirectXRenderTargetWindow::CreateAndSetBackSwapChain(u32 inWindowWidth, u3
 		__debugbreak();
 	}
 
-	// Try to Create a Swapchain from DXGIFactory
-	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, GetActiveWindow(), &sd, nullptr, nullptr, &D3DDevice->m_swapChain)))
+	if (FAILED(hr = dxgiFactory->CreateSwapChainForHwnd(dxgiDevice, handle, &sd, nullptr, nullptr, inSwapChain)))
 	{
 		__debugbreak();
 	}
@@ -86,14 +106,17 @@ void CDirectXRenderTargetWindow::CreateAndSetBackSwapChain(u32 inWindowWidth, u3
 	dxgiFactory->Release();
 }
 
-void CDirectXRenderTargetWindow::CreateAndSetRenderTargetView()
+void CDirectXRenderTargetWindow::CreateRenderTargetView(IDXGISwapChain1* inSwapChain, ID3D11RenderTargetView** InRenderTargetView)
 {
-	D3DDevice->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&D3DDevice->pBackBuffer);
+	inSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&D3DDevice->pBackBuffer);
 
-	if (FAILED(D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(D3DDevice->pBackBuffer, nullptr, &D3DDevice->m_renderTargetView)))
+	if (FAILED(D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(D3DDevice->pBackBuffer, nullptr, InRenderTargetView)))
 		__debugbreak();
+}
 
-	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &D3DDevice->m_renderTargetView, nullptr);
+void CDirectXRenderTargetWindow::SetRenderTargetView(ID3D11RenderTargetView** renderTargetView, u32 inNumRenderTargets)
+{
+	D3DDevice->m_deviceContext->OMSetRenderTargets(inNumRenderTargets, renderTargetView, nullptr);
 }
 
 void CDirectXRenderTargetWindow::CreateAndSetViewPort(u32 inWindowWidth, u32 inWindowHeight)
@@ -136,20 +159,20 @@ void CDirectXRenderTargetWindow::SetVerticalSync(b8 InState)
 
 void CDirectXRenderTargetWindow::Resize(u32 InW, u32 InH)
 {
-	// Release all reference to the SwapChain
+	/*// Release all reference to the SwapChain
 	D3DDevice->m_deviceContext->OMSetRenderTargets(0, 0, 0);
 	D3DDevice->m_renderTargetView->Release();
 
 	HRESULT hr;
 
-	if (FAILED(hr = D3DDevice->m_swapChain->ResizeBuffers(0, InW, InH, DXGI_FORMAT_UNKNOWN, 0)))
+	if (FAILED(hr = D3DDevice->m_swapChain[0]->ResizeBuffers(0, InW, InH, DXGI_FORMAT_UNKNOWN, 0)))
 	{
 		__debugbreak();
 	}
 
 
 	ID3D11Texture2D* pBuffer;
-	if (FAILED(hr = D3DDevice->m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer)))
+	if (FAILED(hr = D3DDevice->m_swapChain[0]->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer)))
 	{
 		__debugbreak();
 	}
@@ -167,14 +190,15 @@ void CDirectXRenderTargetWindow::Resize(u32 InW, u32 InH)
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
-	vp.Width = InW;
-	vp.Height = InH;
+	vp.Width = (FLOAT)InW;
+	vp.Height = (FLOAT)InH;
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
 
 	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
+	*/
 }
 
 void CDirectXRenderTargetWindow::Move(u32 InX, u32 InY)
@@ -209,12 +233,30 @@ void CDirectXRenderTargetWindow::SwapFrameBuffer()
 
 void CDirectXRenderTargetWindow::Present()
 {
-	float clearColor[3] = { 1.0f,1.0f,0.0f };
 
-	D3DDevice->m_deviceContext->ClearRenderTargetView(D3DDevice->m_renderTargetView, clearColor);
+		for (u32 i = 0; i < swapChainCount; i++)
+		{
+			SetRenderTargetView(&D3DDevice->m_renderTargetView[i], 1);
+			float clearColor[3] = {0,0,0};
 
-	if (bUseVerticalSync)
-		D3DDevice->m_swapChain->Present(1, 0);
-	else
-		D3DDevice->m_swapChain->Present(0, 0);
+			if (i % 2 == 0)
+			{
+				clearColor[0] = 1.0f;
+				clearColor[1] = 0.0f;
+				clearColor[2] = 0.0f;
+			}
+			else
+			{
+				clearColor[0] = 1.0f;
+				clearColor[1] = 1.0f;
+				clearColor[2] = 0.0f;
+			}
+
+			D3DDevice->m_deviceContext->ClearRenderTargetView(D3DDevice->m_renderTargetView[i], clearColor);
+
+			if (bUseVerticalSync)
+				D3DDevice->m_swapChain[i]->Present(1, 0);
+			else
+				D3DDevice->m_swapChain[i]->Present(0, 0);
+		}
 }

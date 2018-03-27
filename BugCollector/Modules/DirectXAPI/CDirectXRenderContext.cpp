@@ -14,6 +14,7 @@ void CDirectXRenderContext::Initialize()
 {
 	D3DDevice = TSharedPtr<CD3DDevice>(new CD3DDevice());
 	CreateAndSetDevice();
+	
 }
 
 void CDirectXRenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget)

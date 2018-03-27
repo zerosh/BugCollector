@@ -42,7 +42,9 @@ void CApplication::Initialize()
 	CWindowManager::Instance().SetMainWindow(mainWindow);
 
 	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(mainWindow);
+
 	CWindowManager::Instance().AddWindow(second);
+	
 }
 
 void CApplication::Run()
