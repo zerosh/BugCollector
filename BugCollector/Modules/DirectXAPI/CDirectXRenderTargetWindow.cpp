@@ -22,34 +22,26 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	{
 		createInfo.ParentWindowHandle = ParentWindow;
 	}
-
 	PlatformWindow.Initialize(createInfo);
 
-	// TODO (montify): Find out the numbers of HANDLES for the Array - avoid MagicNumbers :(
 
 	if (ParentWindow)
 	{
-		windowHandels[CDirectXRenderTargetWindow::numWindows-1] = PlatformWindow.GetHandle();
+		swapChainCount = CDirectXRenderTargetWindow::numWindows++;
 
-		CDirectXRenderTargetWindow::numWindows++;
-		swapChainCount = CDirectXRenderTargetWindow::numWindows;
+		CreateSwapChain(PlatformWindow.GetHandle(), &D3DDevice->m_swapChain[swapChainCount-1], createInfo.Width, createInfo.Height);
+		CreateRenderTargetView(D3DDevice->m_swapChain[swapChainCount-1], &D3DDevice->m_renderTargetView[swapChainCount-1]);
 	}
 	else
 	{
 		CDirectXRenderTargetWindow::numWindows++;
 		windowHandels[0] = PlatformWindow.GetHandle();
-	
-		// note(alex): At this point we have 1 swapchain, i set it to two because the for loop underneath substract -1...
-		swapChainCount = 2;
+		CreateSwapChain(windowHandels[0], &D3DDevice->m_swapChain[0], createInfo.Width, createInfo.Height);
+		CreateRenderTargetView(D3DDevice->m_swapChain[0], &D3DDevice->m_renderTargetView[0]);
+		
+		swapChainCount = 1;
 	}
 	
-
-	for (u32 i = 0; i < swapChainCount-1; i++)
-	{
-		CreateSwapChain(windowHandels[i], &D3DDevice->m_swapChain[i], createInfo.Width, createInfo.Height);
-		CreateRenderTargetView(D3DDevice->m_swapChain[i], &D3DDevice->m_renderTargetView[i]);
-	}
-
 
 	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 }
@@ -236,7 +228,7 @@ void CDirectXRenderTargetWindow::SwapFrameBuffer()
 void CDirectXRenderTargetWindow::Present()
 {
 
-		for (u32 i = 0; i < swapChainCount-1; i++)
+		for (u32 i = 0; i < swapChainCount; i++)
 		{
 			SetRenderTargetView(&D3DDevice->m_renderTargetView[i], 1);
 			float clearColor[3] = {0,0,0};
