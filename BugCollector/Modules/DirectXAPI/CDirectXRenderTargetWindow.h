@@ -14,9 +14,9 @@ public:
 	~CDirectXRenderTargetWindow();
 
 private:
-	void CreateAndSetBackSwapChain();
+	void CreateAndSetBackSwapChain(u32 inWindowWidth, u32 inWindowHeight);
 	void CreateAndSetRenderTargetView();
-	void CreateAndSetViewPort();
+	void CreateAndSetViewPort(u32 inWindowWidth, u32 inWindowHeight);
 
 public:
 
