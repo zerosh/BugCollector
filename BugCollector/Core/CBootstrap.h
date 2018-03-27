@@ -10,9 +10,11 @@ public:
 	static void Run(CApplication *InApplication)
 	{
 		InApplication->Initialize();
+
 		InApplication->Run();
 
-	}
+		InApplication->Quit();
+		
 
-	
+	}
 };

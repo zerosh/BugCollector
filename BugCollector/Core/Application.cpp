@@ -12,7 +12,7 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-	
+
 }
 
 void CApplication::Quit()
@@ -49,11 +49,12 @@ void CApplication::Run()
 	/* The game loop goes inside here. */
 	while (bIsRunning)
 	{
-		
 		PreUpdate();
 		PostUpdate();
 		
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
 	}
+
+
 }

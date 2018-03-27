@@ -16,5 +16,5 @@ TSharedPtr<IRenderContext> CRenderManager::GetRenderContext() const
 
 CRenderManager::~CRenderManager()
 {
-	
+
 }

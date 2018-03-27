@@ -6,6 +6,6 @@ int main()
 	CEditorApplication editorApplication;
 	CBootstrap::Run(&editorApplication);
 
-
+	
 	return 0;
 }

@@ -2,8 +2,6 @@
 
 LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wParam, LPARAM lParam)
 {
-
-	MSG msg;
 	switch (uMsg)
 	{
 	case WM_PAINT:
