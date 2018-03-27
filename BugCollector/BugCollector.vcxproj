@@ -135,6 +135,8 @@
     <ClInclude Include="Core\CModule.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Debugging\Debug.h" />
+    <ClInclude Include="Core\Math\CColor.h" />
+    <ClInclude Include="Core\Math\Vector.h" />
     <ClInclude Include="Core\Platform\Platform.h" />
     <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h" />
     <ClInclude Include="Core\Pointer.h" />
@@ -157,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
+    <ClCompile Include="Core\Math\CColor.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />

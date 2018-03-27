@@ -10,3 +10,5 @@
 #include "Pointer.h"
 #include "CModule.h"
 #include "TArray.h"
+#include "math/Vector.h"
+#include "Math/CColor.h"
