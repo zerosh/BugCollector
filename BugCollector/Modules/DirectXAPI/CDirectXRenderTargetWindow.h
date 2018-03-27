@@ -8,9 +8,8 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> D3DDevice;
-	
 public:
-	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice);
+	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
 
 	~CDirectXRenderTargetWindow();
 

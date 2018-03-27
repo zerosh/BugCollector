@@ -2,9 +2,10 @@
 
 
 
-CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice)
+CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
+
 	// Temp setup to get started.
 	FPlatformWindowCreateInfo createInfo;
 	createInfo.bCreateDebugWindow = false;
@@ -12,6 +13,15 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	createInfo.bEnableVerticalSync = true;
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
+
+	CDirectXRenderTargetWindow *ParentWindow = static_cast<CDirectXRenderTargetWindow*>(InParentWindow.get());
+
+	if (ParentWindow)
+	{
+		createInfo.ParentWindowHandle = ParentWindow;
+	}
+
+	//createInfo.ParentWindowHandle 
 
 	PlatformWindow.Initialize(createInfo);
 }

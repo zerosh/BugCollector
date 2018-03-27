@@ -12,7 +12,6 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
-
 }
 
 void CApplication::Quit()
@@ -35,13 +34,15 @@ void CApplication::Initialize()
 
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 
-
 	mainWindow->SetVerticalSync(true);
 	mainWindow->SetUseGammaCorrection(false);
 	mainWindow->SetNumMultisamples(0);
 
 
 	CWindowManager::Instance().SetMainWindow(mainWindow);
+
+	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(mainWindow);
+	CWindowManager::Instance().AddWindow(second);
 }
 
 void CApplication::Run()
