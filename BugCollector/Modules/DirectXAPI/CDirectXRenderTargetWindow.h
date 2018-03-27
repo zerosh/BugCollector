@@ -11,6 +11,7 @@ private:
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice)
 	{
+		m_device = InD3DDevice;
 		// Temp setup to get started.
 		FPlatformWindowCreateInfo createInfo;
 		createInfo.bCreateDebugWindow = false;
@@ -20,12 +21,6 @@ public:
 		createInfo.Height = 768;
 	
 		PlatformWindow.Initialize(createInfo);
-
-		m_device = InD3DDevice;
-
-		m_device->InitD3D11();
-		
-
 	}
 
 	
@@ -96,6 +91,7 @@ public:
 			m_device->m_swapChain->Present(1, 0);
 		else
 			m_device->m_swapChain->Present(0, 0);
+		
 	}
 
 };

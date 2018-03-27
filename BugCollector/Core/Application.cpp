@@ -28,6 +28,8 @@ void CApplication::Initialize()
 	CProfileManager::StartModule();
 
 	/* Temp rendering setup. */
+
+	
 	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 

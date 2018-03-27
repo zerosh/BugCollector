@@ -1,12 +1,22 @@
 #pragma once
 #include "../../Core/RenderingAPI/IRenderContext.h"
 #include "CDirectXRenderTargetWindow.h"
-
+#include "CD3DDevice.h"
 class CDirectXRenderContext : public IRenderContext
 {
-
 private:
-	TSharedPtr<CD3DDevice> D3DDevice;
+	
+
+private: 
+	TSharedPtr<CD3DDevice> m_device;
+	
+	void CreateDevice();
+	void CreateBackSwapChain();
+	void CreateRenderTargetView();
+	void SetRenderTarget();
+	void SetViewPort();
+
+
 public:
 	CDirectXRenderContext();
 	~CDirectXRenderContext();
