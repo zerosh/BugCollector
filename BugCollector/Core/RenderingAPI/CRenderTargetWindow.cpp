@@ -51,6 +51,10 @@ void CRenderTargetWindow::SwapFrameBuffer()
 
 }
 
+void CRenderTargetWindow::DispatchWindowsMessage()
+{
+}
+
 void CRenderTargetWindow::SetFullscreen()
 {
 

@@ -10,13 +10,13 @@ TSharedPtr<CRenderTargetWindow> CDirectXRenderContext::CreateRenderTargetWindow(
 
 	CreateAndSetDevice();
 
-	CDirectXRenderTargetWindow *window = new CDirectXRenderTargetWindow(m_device);
+	auto window = TSharedPtr<CDirectXRenderTargetWindow>(new CDirectXRenderTargetWindow(m_device));
 
 	CreateAndSetBackSwapChain();
 	CreateAndSetRenderTargetView();
 	CreateAndSetViewPort();
 	
-	return TSharedPtr<CRenderTargetWindow>(window);
+	return window;
 }
 
 
@@ -27,6 +27,7 @@ void CDirectXRenderContext::Initialize()
 
 void CDirectXRenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget)
 {
+	InRenderTarget->DispatchWindowsMessage();
 	InRenderTarget->Present();
 }
 
@@ -70,7 +71,7 @@ void CDirectXRenderContext::CreateAndSetBackSwapChain()
 	sd.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
 	
 
-	// Grab the dxgi Factory
+	// Grab the DXGI Factory
 
 	IDXGIDevice* dxgiDevice = nullptr;
 	HRESULT hr;
@@ -133,10 +134,9 @@ CDirectXRenderContext::CDirectXRenderContext()
 	 
 }
 
-
 CDirectXRenderContext::~CDirectXRenderContext()
 {
-	
+	int a = 3;
 }
 
 

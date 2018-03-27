@@ -5,11 +5,13 @@
 class CRenderManager : public CModule<CRenderManager>
 {
 private:
-	IRenderContext * RenderContext;
+	TSharedPtr<IRenderContext> RenderContext;
 public:
 	/* Set the current rendering context. */
-	void SetRenderContext(IRenderContext *InRenderContext);
+	void SetRenderContext(TSharedPtr<IRenderContext> InRenderContext);
 
 	/* Get the current rendering context. */
-	IRenderContext* GetRenderContext() const;
+	TSharedPtr<IRenderContext> GetRenderContext() const;
+
+	~CRenderManager();
 };

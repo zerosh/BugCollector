@@ -8,6 +8,7 @@ class CDirectXRenderTargetWindow : public CRenderTargetWindow
 private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> m_device;
+	
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice)
 	{
@@ -21,12 +22,23 @@ public:
 		createInfo.Height = 768;
 
 		PlatformWindow.Initialize(createInfo);
+
+		
 	}
 
+	~CDirectXRenderTargetWindow()
+	{
+		
+	}
+
+	virtual void DispatchWindowsMessage() override
+	{
+		PlatformWindow.Run();
+	}
 
 	virtual void SetFullscreen() override
 	{
-
+		
 	}
 
 
@@ -124,7 +136,7 @@ public:
 
 	virtual void Present() override
 	{
-		float clearColor[3] = { 1.0f,1.0f,0.0f };
+	float clearColor[3] = { 1.0f,1.0f,0.0f };
 
 		m_device->m_deviceContext->ClearRenderTargetView(m_device->m_renderTargetView, clearColor);
 

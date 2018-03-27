@@ -2,6 +2,8 @@
 
 LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wParam, LPARAM lParam)
 {
+
+	MSG msg;
 	switch (uMsg)
 	{
 	case WM_PAINT:
@@ -11,8 +13,10 @@ LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wPa
 		DestroyWindow(hwnd);
 		PostQuitMessage(0);
 		break;
-	}
+	 default:
+		 break;
 
+	}
 	return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
 
@@ -49,7 +53,9 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 	else
 	{
 		dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
-		dwStyle = WS_POPUP;// WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+
+		// montify: ( Activated during debugging )
+		dwStyle = WS_POPUP| WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 	}
 
 	const u32 screenWidth = GetSystemMetrics(SM_CXSCREEN);
@@ -105,4 +111,15 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 HWND CWindowsPlatformWindow::GetHandle() const
 {
 	return WindowHandle;
+}
+
+void CWindowsPlatformWindow::Run()
+{
+	MSG msg = {};
+
+	if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
 }

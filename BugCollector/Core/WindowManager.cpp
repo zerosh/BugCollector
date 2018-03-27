@@ -18,6 +18,8 @@ void CWindowManager::AddWindow(TSharedPtr<CRenderTargetWindow> InWindow)
 
 void CWindowManager::Render()
 {
+
+	
 	/* Render the main window. */
 	CRenderManager::Instance().GetRenderContext()->Present(MainWindow);
 

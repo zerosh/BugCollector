@@ -41,4 +41,7 @@ public:
 
 	/* Present the back to front. */
 	virtual void SwapFrameBuffer();
+
+	/* Dispatch Window Message*/
+	virtual void DispatchWindowsMessage();
 };

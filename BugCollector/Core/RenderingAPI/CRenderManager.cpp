@@ -1,15 +1,20 @@
 #include "CRenderManager.h"
 
+//void CRenderManager::SetRenderContext(IRenderContext *InRenderContext)
 
-
-void CRenderManager::SetRenderContext(IRenderContext *InRenderContext)
+void CRenderManager::SetRenderContext(TSharedPtr<IRenderContext> InRenderContext)
 {
 	RenderContext = InRenderContext;
 
 	RenderContext->Initialize();
 }
 
-IRenderContext* CRenderManager::GetRenderContext() const
+TSharedPtr<IRenderContext> CRenderManager::GetRenderContext() const
 {
 	return RenderContext;
+}
+
+CRenderManager::~CRenderManager()
+{
+	
 }

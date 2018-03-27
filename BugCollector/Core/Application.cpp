@@ -12,6 +12,7 @@ CApplication::CApplication()
 
 CApplication::~CApplication()
 {
+	
 }
 
 void CApplication::Quit()
@@ -21,7 +22,7 @@ void CApplication::Quit()
 
 void CApplication::Initialize()
 {
-	/* Initialize modules for the application. */
+	/* Initialize modules for the application.*/
 	CDebugManager::StartModule();
 	CRenderManager::StartModule();
 	CWindowManager::StartModule();
@@ -29,8 +30,9 @@ void CApplication::Initialize()
 
 	/* Temp rendering setup. */
 
-	
-	CRenderManager::Instance().SetRenderContext(new CDirectXRenderContext());
+	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CDirectXRenderContext()));
+
+
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 
 
@@ -47,6 +49,7 @@ void CApplication::Run()
 	/* The game loop goes inside here. */
 	while (bIsRunning)
 	{
+		
 		PreUpdate();
 		PostUpdate();
 		
