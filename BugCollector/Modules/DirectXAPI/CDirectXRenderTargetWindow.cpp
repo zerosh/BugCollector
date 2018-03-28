@@ -211,8 +211,9 @@ void CDirectXRenderTargetWindow::Present()
 {
 	SetRenderTargetView();
 	float clearColor[3] = { 1,1,0 };
-
+	
+	
 	D3DDevice->m_deviceContext->ClearRenderTargetView(m_RederTargetView, clearColor);
-
+	
 	m_SwapChain->Present(0, 0);
 }

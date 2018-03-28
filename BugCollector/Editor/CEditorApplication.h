@@ -1,6 +1,7 @@
 #pragma once
 #include "../Core/Application.h"
 #include "../Core/WindowManager.h"
+#include "../Core/RenderingAPI/CVertexBuffer.h"
 
 class CEditorApplication : public CApplication
 {

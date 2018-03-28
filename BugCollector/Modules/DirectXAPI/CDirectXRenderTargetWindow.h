@@ -9,10 +9,10 @@ private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3DDevice> D3DDevice;
 
-	 IDXGISwapChain1* m_SwapChain = nullptr;
-	 ID3D11RenderTargetView* m_RederTargetView = nullptr;
-	 ID3D11Texture2D* m_BackBuffer = nullptr;
-	 ID3D11Texture2D* m_depthStencilBuffer = nullptr;
+	IDXGISwapChain1* m_SwapChain = nullptr;
+	ID3D11RenderTargetView* m_RederTargetView = nullptr;
+	ID3D11Texture2D* m_BackBuffer = nullptr;
+	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 
 public:
 	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);

@@ -2,6 +2,7 @@
 #include "../../Core/RenderingAPI/IRenderContext.h"
 #include "CDirectXRenderTargetWindow.h"
 #include "CD3DDevice.h"
+#include "CDirectXVertexBuffer.h"
 
 class CDirectXRenderContext : public IRenderContext
 {

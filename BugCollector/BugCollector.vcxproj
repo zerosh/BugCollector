@@ -156,6 +156,7 @@
     <ClInclude Include="Modules\DirectXAPI\CD3DDevice.h" />
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h" />
     <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h" />
+    <ClInclude Include="Modules\DirectXAPI\CDirectXVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
