@@ -7,16 +7,14 @@ class CD3D11VertexBuffer : public CVertexBuffer
 {
 private:
 	ID3D11Device& m_D3DDevice;
+	ID3D11DeviceContext& m_D3DDeviceContext;
 	ID3D11Buffer* vertexBuffer;
 	
 
 public:
-	void TEST()
-	{
 
-	}
-	CD3D11VertexBuffer(ID3D11Device& inD3DDevice, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
-		:m_D3DDevice(inD3DDevice)
+	CD3D11VertexBuffer(ID3D11Device& inD3DDevice, ID3D11DeviceContext& inD3DDeviceContext, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
+		:m_D3DDevice(inD3DDevice), m_D3DDeviceContext(inD3DDeviceContext)
 	{
 		CreateBuffer(InVertexBufferCreateInfo);
 		
@@ -25,28 +23,35 @@ public:
 
 	virtual void Write(const void *InSource, u32 InLength) override
 	{
-		//throw std::logic_error("The method or operation is not implemented.");
+		D3D11_MAPPED_SUBRESOURCE resource;
+		ZeroMemory(&resource, sizeof(D3D11_MAPPED_SUBRESOURCE));
+
+		m_D3DDeviceContext.Map(vertexBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+
+		memcpy(resource.pData, InSource, InLength);
+		m_D3DDeviceContext.Unmap(vertexBuffer, 0);
 	}
 
 private:
-
 	void CreateBuffer(const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
 	{
-		D3D11_BUFFER_DESC vertexBufferDesc = { };
-	
-		vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-		vertexBufferDesc.ByteWidth = sizeof(InVertexBufferCreateInfo.VertexStride);
+		D3D11_BUFFER_DESC vertexBufferDesc;
+
+		
+		vertexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+		vertexBufferDesc.ByteWidth = InVertexBufferCreateInfo.VertexStride * InVertexBufferCreateInfo.NumVertices;
 		vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		vertexBufferDesc.CPUAccessFlags = 0;
+		vertexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		vertexBufferDesc.MiscFlags = 0;
 
-	//	D3D11_SUBRESOURCE_DATA InitData;
-	////	InitData.pSysMem = vertices;
-	//	InitData.SysMemPitch = 0;
-	//	InitData.SysMemSlicePitch = 0;
-
-		/* Allocate the buffer first, then write the data into the buffer later. */
+		
 		m_D3DDevice.CreateBuffer(&vertexBufferDesc, 0, &vertexBuffer);
+		
 	}
+
+	//TESTDATA
+public:
+	ID3D11Buffer* const* GetBuffer()  { return &vertexBuffer; };
+
 };
 

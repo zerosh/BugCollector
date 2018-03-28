@@ -2,7 +2,7 @@
 #include "../../Core/RenderingAPI/CRenderTargetWindow.h"
 #include "../../Core/Platform/Platform.h"
 #include "CD3D11Device.h"
-
+#include "CD3D11VertexBuffer.h"
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
 private:
@@ -14,6 +14,12 @@ private:
 	ID3D11Texture2D* m_BackBuffer = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 
+	// TESTDATA
+	CD3D11VertexBuffer* vBuffer;
+	ID3D11VertexShader* vertexShader = nullptr;
+	ID3D11PixelShader* pixelShader = nullptr;
+	ID3D11InputLayout* inputLayout = nullptr;
+	//------------
 public:
 	CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
 

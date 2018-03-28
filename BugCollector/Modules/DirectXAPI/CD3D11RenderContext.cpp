@@ -22,7 +22,7 @@ void CD3D11RenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget
 
 TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo)
 {
-	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, InVertexBufferCreateInfo));
+	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, *D3DDevice->m_deviceContext, InVertexBufferCreateInfo));
 }
 
 TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
