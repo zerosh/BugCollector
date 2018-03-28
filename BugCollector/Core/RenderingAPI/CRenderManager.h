@@ -1,6 +1,7 @@
 #pragma once
 #include "../Core.h"
 #include "IRenderContext.h"
+#include "CVertexDeclaration.h"
 
 class CRenderManager : public CModule<CRenderManager>
 {

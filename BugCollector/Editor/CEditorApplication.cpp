@@ -34,7 +34,27 @@ void CEditorApplication::Initialize()
 	VertexData.Add(2.0f);
 
 	vb->Write(VertexData.GetData(), VertexData.Num());
-	
+
+	/* 
+		Test declaration of the vertex input element 
+	*/
+	struct FVertexDeclarationPosition
+	{
+		const FVertexElement Position = FVertexElement(0, 0, Float3);
+
+		TSharedPtr<CVertexDeclaration> Declaration;
+
+		FVertexDeclarationPosition()
+		{
+			TArray<FVertexElement> Elements;
+			Elements.Add(Position);
+
+			Declaration = CVertexDeclaration::Create(Elements);
+		}
+	};
+
+	FVertexDeclarationPosition VertexDeclarationPosition;
+
 	//auto SceneWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(MainWindow);
 	//SceneWindow->SetVerticalSync(true);
 	//CWindowManager::Instance().AddWindow(SceneWindow);

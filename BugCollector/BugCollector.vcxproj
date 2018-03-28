@@ -146,6 +146,7 @@
     <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h" />
     <ClInclude Include="Core\RenderingAPI\CVertexBuffer.h" />
+    <ClInclude Include="Core\RenderingAPI\CVertexDeclaration.h" />
     <ClInclude Include="Core\RenderingAPI\Material\CMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\Material\IMaterialCompiler.h" />
     <ClInclude Include="Core\WindowManager.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Core\Math\CColor.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />

@@ -25,6 +25,11 @@ TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexB
 	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, InVertexBufferCreateInfo));
 }
 
+TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
+{
+	return TSharedPtr<CVertexDeclaration>(new CVertexDeclaration(InElements));
+}
+
 void CD3D11RenderContext::CreateAndSetDevice()
 {
 	ID3D11Device* device = nullptr;

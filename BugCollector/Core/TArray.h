@@ -31,6 +31,11 @@ public:
 		return Data[InElementIndex];
 	}
 
+	const T& operator [] (const u32 InElementIndex) const
+	{
+		return Data[InElementIndex];
+	}
+
 	const T* GetData() const
 	{
 		return &Data[0];
