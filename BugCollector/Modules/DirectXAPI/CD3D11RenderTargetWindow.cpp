@@ -1,5 +1,5 @@
 #include "CD3D11RenderTargetWindow.h"
-
+#include <fstream>
 CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
@@ -24,11 +24,83 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	 CreateSwapChain(PlatformWindow.GetHandle(), createInfo.Width, createInfo.Height);
 	 CreateRenderTargetView();
 	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
+
+
+	 //TESTDATA
+	
+	 
+
+	 struct Vector3
+	 {
+		 float x;
+		 float y;
+		 float z;
+	 };
+
+	 struct Vector4
+	 {
+		 float x;
+		 float y;
+		 float z;
+		 float w;
+	 };
+
+	 struct Vertex
+	 {
+		 Vector3 Position;
+		 Vector4 Color;
+	 };
+
+	 TArray<Vertex> VertexData;
+
+	 Vertex v1;
+	 v1.Position = { 0.0f, 0.5f, 0.5f };
+	 v1.Color = { 1,0,0,1 };
+
+	 Vertex v2;
+	 v2.Position = { 0.5f, -0.5f, 0.5f };
+	 v2.Color = { 1,0,0,1 };
+
+	 Vertex v3;
+	 v3.Position = { -0.5f, -0.5f, 0.5f };
+	 v3.Color = { 1,0,0,1 };
+
+	 VertexData.Add(v1);
+	 VertexData.Add(v2);
+	 VertexData.Add(v3);
+	
+	 FVertexBufferCreateInfo vertexBufferCreateInfo;
+	 vertexBufferCreateInfo.BufferUsage = Stream;
+	 vertexBufferCreateInfo.NumVertices = 3;
+	 vertexBufferCreateInfo.VertexStride = sizeof(v1);
+
+	 vBuffer = new CD3D11VertexBuffer(*InD3DDevice->m_nativeD3DDevice, *InD3DDevice->m_deviceContext, vertexBufferCreateInfo);
+	 vBuffer->Write(VertexData.GetData(), sizeof(v1)*3);
+	 
+
+	 std::ifstream vsFile("C:\\Users\\alex\\source\\repos\\Win32Test\\Debug\\basicVS.cso", std::ios::binary);
+	 std::ifstream psFile("C:\\Users\\alex\\source\\repos\\Win32Test\\Debug\\basicPS.cso", std::ios::binary);
+
+	 std::vector<char> vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
+	 std::vector<char> psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
+
+
+	 D3D11_INPUT_ELEMENT_DESC vertexDesc[2]
+	 {
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,0 },
+
+	 };
+
+	 D3DDevice->m_nativeD3DDevice->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
+	 D3DDevice->m_nativeD3DDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
+	 D3DDevice->m_nativeD3DDevice->CreateInputLayout(vertexDesc, 2, vsData.data(), vsData.size(), &inputLayout);
+	 //----------------------------
 }
 
 CD3D11RenderTargetWindow::~CD3D11RenderTargetWindow()
 {
-	
+	delete vBuffer;
 }
 
 void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
@@ -210,10 +282,28 @@ void CD3D11RenderTargetWindow::SwapFrameBuffer()
 void CD3D11RenderTargetWindow::Present()
 {
 	SetRenderTargetView();
-	float clearColor[3] = { 1,1,0 };
+	float clearColor[3] = { 0.390f, 0.58f, 0.6f };
 	
 	
 	D3DDevice->m_deviceContext->ClearRenderTargetView(m_RederTargetView, clearColor);
 	
-	m_SwapChain->Present(0, 0);
+
+	//TESTDATA
+	const u32 stride = sizeof(float)*3;
+	const u32 offset = 0;
+
+	D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
+	D3DDevice->m_deviceContext->VSSetShader(vertexShader, nullptr, 0);
+	D3DDevice->m_deviceContext->PSSetShader(pixelShader, nullptr, 0);
+
+	
+	const u32 inVertexStructSize = 28;
+	D3DDevice->m_deviceContext->IASetVertexBuffers(0, 1, vBuffer->GetBuffer(), &inVertexStructSize, &offset);
+
+
+	D3DDevice->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	D3DDevice->m_deviceContext->Draw(3, 0);
+	//-----------------------
+
+	m_SwapChain->Present(1, 0);
 }

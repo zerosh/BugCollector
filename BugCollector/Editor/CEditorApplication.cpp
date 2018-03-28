@@ -21,6 +21,7 @@ void CEditorApplication::Initialize()
 	second->SetVerticalSync(true);
 	CWindowManager::Instance().AddWindow(second);
 
+
 	FVertexBufferCreateInfo createInfo;
 	createInfo.BufferUsage = Static;
 	createInfo.NumVertices = 3;	
@@ -54,6 +55,7 @@ void CEditorApplication::Initialize()
 	};
 
 	FVertexDeclarationPosition VertexDeclarationPosition;
+
 
 	//auto SceneWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(MainWindow);
 	//SceneWindow->SetVerticalSync(true);
