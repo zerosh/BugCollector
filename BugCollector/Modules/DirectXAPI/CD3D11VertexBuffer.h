@@ -20,7 +20,7 @@ public:
 		
 	}
 
-
+	// In Length should be renamed into "InTotalSize" or so 
 	virtual void Write(const void *InSource, u32 InLength) override
 	{
 		D3D11_MAPPED_SUBRESOURCE resource;
