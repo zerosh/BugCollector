@@ -6,8 +6,8 @@ struct TVector
 	T Data[NUM];
 };
 
-template <typename T>
-struct TVector2 : public TVector<T, 2>
+template <typename T, u32 NUM>
+struct TVector2 : public TVector<T, NUM>
 {
 	TVector2()
 	{}
@@ -39,5 +39,31 @@ struct TVector2 : public TVector<T, 2>
 	}
 };
 
-typedef TVector2<f32> Vector2f;
-typedef TVector2<u32> Vector2i;
+template <typename T, u32 NUM>
+struct TVector3 : public TVector2<T, NUM>
+{
+	TVector3()
+	{}
+
+	TVector3(T InX, T InY, T InZ)
+	{
+		SetX(InX);
+		SetY(InY);
+		SetZ(InZ);
+	}
+
+	void SetZ(const T InValue)
+	{
+		this->Data[2] = InValue;
+	}
+
+	T GetZ() const
+	{
+		return this->Data[2];
+	}
+};
+
+typedef TVector2<f32, 2> Vector2f;
+typedef TVector2<u32, 2> Vector2i;
+typedef TVector3<f32, 3> Vector3f;
+typedef TVector3<u32, 3> Vector3i;
