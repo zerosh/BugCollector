@@ -176,6 +176,10 @@
     <ClCompile Include="Modules\DirectXAPI\CD3D11RenderContext.cpp" />
     <ClCompile Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor\Resource\basicPS.cso" />
+    <None Include="Editor\Resource\basicVS.cso" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

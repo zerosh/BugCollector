@@ -153,4 +153,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Editor\Resource\basicPS.cso" />
+    <None Include="Editor\Resource\basicVS.cso" />
+  </ItemGroup>
 </Project>

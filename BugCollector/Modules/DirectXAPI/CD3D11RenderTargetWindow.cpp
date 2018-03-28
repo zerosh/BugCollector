@@ -78,8 +78,9 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	 vBuffer->Write(VertexData.GetData(), sizeof(v1)*3);
 	 
 
-	 std::ifstream vsFile("C:\\Users\\alex\\source\\repos\\Win32Test\\Debug\\basicVS.cso", std::ios::binary);
-	 std::ifstream psFile("C:\\Users\\alex\\source\\repos\\Win32Test\\Debug\\basicPS.cso", std::ios::binary);
+	 std::ifstream vsFile("Editor/Resource/basicVS.cso", std::ios::binary);
+	 std::ifstream psFile("Editor/Resource/basicPS.cso", std::ios::binary);
+
 
 	 std::vector<char> vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
 	 std::vector<char> psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
