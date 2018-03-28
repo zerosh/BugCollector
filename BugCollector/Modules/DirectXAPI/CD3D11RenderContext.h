@@ -1,17 +1,17 @@
 #pragma once
 #include "../../Core/RenderingAPI/IRenderContext.h"
-#include "CDirectXRenderTargetWindow.h"
-#include "CD3DDevice.h"
-#include "CDirectXVertexBuffer.h"
+#include "CD3D11RenderTargetWindow.h"
+#include "CD3D11Device.h"
+#include "CD3D11VertexBuffer.h"
 
-class CDirectXRenderContext : public IRenderContext
+class CD3D11RenderContext : public IRenderContext
 {
 private: 
-	TSharedPtr<CD3DDevice> D3DDevice;
+	TSharedPtr<CD3D11Device> D3DDevice;
 	void CreateAndSetDevice();
 public:
-	CDirectXRenderContext();
-	~CDirectXRenderContext();
+	CD3D11RenderContext();
+	~CD3D11RenderContext();
 
 	virtual TSharedPtr<CRenderTargetWindow> CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow = nullptr) override;
 	virtual void Initialize() override;

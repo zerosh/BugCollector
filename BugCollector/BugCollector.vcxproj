@@ -153,10 +153,10 @@
     <ClInclude Include="Core\TArray.h" />
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
-    <ClInclude Include="Modules\DirectXAPI\CD3DDevice.h" />
-    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h" />
-    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h" />
-    <ClInclude Include="Modules\DirectXAPI\CDirectXVertexBuffer.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11Device.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11RenderContext.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11VertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
@@ -171,8 +171,8 @@
     <ClCompile Include="Core\RenderingAPI\CRenderTargetWindow.cpp" />
     <ClCompile Include="Editor\CEditorApplication.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp" />
-    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.cpp" />
+    <ClCompile Include="Modules\DirectXAPI\CD3D11RenderContext.cpp" />
+    <ClCompile Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

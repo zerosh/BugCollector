@@ -2,7 +2,7 @@
 #include "WindowManager.h"
 
 #include "Profiler/CProfileManager.h"
-#include "../Modules/DirectXAPI/CDirectXRenderContext.h"
+#include "../Modules/DirectXAPI/CD3D11RenderContext.h"
 
 CApplication::CApplication()
 {
@@ -25,7 +25,7 @@ void CApplication::Initialize()
 
 	
 	/* Setting up the default application window. */
-	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CDirectXRenderContext()));
+	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CD3D11RenderContext()));
 
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 	mainWindow->SetVerticalSync(true);

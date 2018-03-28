@@ -31,5 +31,9 @@ struct FVertexBufferCreateInfo
 class CVertexBuffer
 {
 public:
+	/* Write data to the buffer. */
+	virtual void Write(const void *InSource, u32 InLength) = 0;
+
+	/* Create a new vertex buffer. */
 	static TSharedPtr<CVertexBuffer> Create(const FVertexBufferCreateInfo &InVertexBufferCreateInfo);
 };

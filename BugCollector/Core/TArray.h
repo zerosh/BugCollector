@@ -30,4 +30,9 @@ public:
 	{
 		return Data[InElementIndex];
 	}
+
+	const T* GetData() const
+	{
+		return &Data[0];
+	}
 };

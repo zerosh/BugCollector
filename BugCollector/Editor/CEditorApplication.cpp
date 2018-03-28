@@ -26,11 +26,15 @@ void CEditorApplication::Initialize()
 	createInfo.NumVertices = 3;	
 	createInfo.VertexStride = sizeof(u32);
 
-	CVertexBuffer vb;
-	
-	auto x = vb.Create(createInfo);
-	
+	auto vb = CVertexBuffer::Create(createInfo);
 
+	TArray<f32> VertexData;
+	VertexData.Add(0.0f);
+	VertexData.Add(1.0f);
+	VertexData.Add(2.0f);
+
+	vb->Write(VertexData.GetData(), VertexData.Num());
+	
 	//auto SceneWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(MainWindow);
 	//SceneWindow->SetVerticalSync(true);
 	//CWindowManager::Instance().AddWindow(SceneWindow);

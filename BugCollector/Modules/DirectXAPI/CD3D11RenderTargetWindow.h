@@ -1,13 +1,13 @@
 #pragma once
 #include "../../Core/RenderingAPI/CRenderTargetWindow.h"
 #include "../../Core/Platform/Platform.h"
-#include "CD3DDevice.h"
+#include "CD3D11Device.h"
 
-class CDirectXRenderTargetWindow : public CRenderTargetWindow
+class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
 private:
 	CPlatformWindow PlatformWindow;
-	TSharedPtr<CD3DDevice> D3DDevice;
+	TSharedPtr<CD3D11Device> D3DDevice;
 
 	IDXGISwapChain1* m_SwapChain = nullptr;
 	ID3D11RenderTargetView* m_RederTargetView = nullptr;
@@ -15,9 +15,9 @@ private:
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 
 public:
-	CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
+	CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
 
-	~CDirectXRenderTargetWindow();
+	~CD3D11RenderTargetWindow();
 
 private:
 	void CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight);

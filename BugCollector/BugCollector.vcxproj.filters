@@ -30,9 +30,6 @@
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Profiler\CProfileManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,13 +48,16 @@
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\Math\CColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\DirectXAPI\CD3D11RenderContext.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -98,12 +98,6 @@
     <ClInclude Include="Core\Platform\Platform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Modules\DirectXAPI\CDirectXRenderTargetWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\TArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -125,9 +119,6 @@
     <ClInclude Include="Core\Debugging\Debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\DirectXAPI\CD3DDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\RenderingAPI\CVertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -143,7 +134,16 @@
     <ClInclude Include="Core\Math\Vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\DirectXAPI\CDirectXVertexBuffer.h">
+    <ClInclude Include="Modules\DirectXAPI\CD3D11Device.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CD3D11RenderContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CD3D11VertexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

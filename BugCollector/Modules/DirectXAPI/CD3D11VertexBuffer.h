@@ -3,7 +3,7 @@
 #include "../../Core/RenderingAPI/CVertexBuffer.h"
 
 
-class CDirectXVertexBuffer : public CVertexBuffer
+class CD3D11VertexBuffer : public CVertexBuffer
 {
 private:
 	ID3D11Device& m_D3DDevice;
@@ -15,21 +15,23 @@ public:
 	{
 
 	}
-	CDirectXVertexBuffer(ID3D11Device& inD3DDevice, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
+	CD3D11VertexBuffer(ID3D11Device& inD3DDevice, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
 		:m_D3DDevice(inD3DDevice)
 	{
 		CreateBuffer(InVertexBufferCreateInfo);
 		
 	}
 
-	
+
+	virtual void Write(const void *InSource, u32 InLength) override
+	{
+		//throw std::logic_error("The method or operation is not implemented.");
+	}
+
 private:
 
 	void CreateBuffer(const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
 	{
-
-		// Hey Zrosh, how i get the VertexData in here, because FVertexBufferCreateInfo dont provide that...
-		
 		D3D11_BUFFER_DESC vertexBufferDesc = { };
 	
 		vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
@@ -38,12 +40,13 @@ private:
 		vertexBufferDesc.CPUAccessFlags = 0;
 		vertexBufferDesc.MiscFlags = 0;
 
-		D3D11_SUBRESOURCE_DATA InitData;
-	//	InitData.pSysMem = vertices;
-		InitData.SysMemPitch = 0;
-		InitData.SysMemSlicePitch = 0;
-	//	m_D3DDevice.CreateBuffer(&vertexBufferDesc, &InitData, &vertexBuffer);
-		
+	//	D3D11_SUBRESOURCE_DATA InitData;
+	////	InitData.pSysMem = vertices;
+	//	InitData.SysMemPitch = 0;
+	//	InitData.SysMemSlicePitch = 0;
+
+		/* Allocate the buffer first, then write the data into the buffer later. */
+		m_D3DDevice.CreateBuffer(&vertexBufferDesc, 0, &vertexBuffer);
 	}
 };
 

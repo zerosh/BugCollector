@@ -1,6 +1,6 @@
-#include "CDirectXRenderTargetWindow.h"
+#include "CD3D11RenderTargetWindow.h"
 
-CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
+CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
 	
@@ -12,7 +12,7 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
 	
-	CDirectXRenderTargetWindow *ParentWindow = static_cast<CDirectXRenderTargetWindow*>(InParentWindow.get());
+	CD3D11RenderTargetWindow *ParentWindow = static_cast<CD3D11RenderTargetWindow*>(InParentWindow.get());
 
 	if (ParentWindow)
 	{
@@ -26,12 +26,12 @@ CDirectXRenderTargetWindow::CDirectXRenderTargetWindow(TSharedPtr<CD3DDevice> In
 	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 }
 
-CDirectXRenderTargetWindow::~CDirectXRenderTargetWindow()
+CD3D11RenderTargetWindow::~CD3D11RenderTargetWindow()
 {
 	
 }
 
-void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
+void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
 {
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
@@ -81,7 +81,7 @@ void CDirectXRenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth,
 	dxgiFactory->Release();
 }
 
-void CDirectXRenderTargetWindow::CreateRenderTargetView()
+void CD3D11RenderTargetWindow::CreateRenderTargetView()
 {
 	
 	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&m_BackBuffer);
@@ -90,12 +90,12 @@ void CDirectXRenderTargetWindow::CreateRenderTargetView()
 		__debugbreak();
 }
 
-void CDirectXRenderTargetWindow::SetRenderTargetView()
+void CD3D11RenderTargetWindow::SetRenderTargetView()
 {
 	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &m_RederTargetView, nullptr);
 }
 
-void CDirectXRenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight)
+void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight)
 {
 	D3D11_VIEWPORT vp;
 	vp.Width = (FLOAT)InWindowWidth;
@@ -108,32 +108,32 @@ void CDirectXRenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InW
 
 }
 
-void CDirectXRenderTargetWindow::DispatchWindowsMessage()
+void CD3D11RenderTargetWindow::DispatchWindowsMessage()
 {
 	PlatformWindow.Run();
 }
 
-void CDirectXRenderTargetWindow::SetFullscreen()
+void CD3D11RenderTargetWindow::SetFullscreen()
 {
 
 }
 
-void CDirectXRenderTargetWindow::SetFullscreenWindow()
+void CD3D11RenderTargetWindow::SetFullscreenWindow()
 {
 
 }
 
-void CDirectXRenderTargetWindow::SetWindowed(u32 InW, u32 InH)
+void CD3D11RenderTargetWindow::SetWindowed(u32 InW, u32 InH)
 {
 
 }
 
-void CDirectXRenderTargetWindow::SetVerticalSync(b8 InState)
+void CD3D11RenderTargetWindow::SetVerticalSync(b8 InState)
 {
 	bUseVerticalSync = InState;
 }
 
-void CDirectXRenderTargetWindow::Resize(u32 InW, u32 InH)
+void CD3D11RenderTargetWindow::Resize(u32 InW, u32 InH)
 {
 	/*// Release all reference to the SwapChain
 	D3DDevice->m_deviceContext->OMSetRenderTargets(0, 0, 0);
@@ -177,37 +177,37 @@ void CDirectXRenderTargetWindow::Resize(u32 InW, u32 InH)
 	*/
 }
 
-void CDirectXRenderTargetWindow::Move(u32 InX, u32 InY)
+void CD3D11RenderTargetWindow::Move(u32 InX, u32 InY)
 {
 
 }
 
-void CDirectXRenderTargetWindow::Show()
+void CD3D11RenderTargetWindow::Show()
 {
 
 }
 
-void CDirectXRenderTargetWindow::Hide()
+void CD3D11RenderTargetWindow::Hide()
 {
 
 }
 
-void CDirectXRenderTargetWindow::Minimize()
+void CD3D11RenderTargetWindow::Minimize()
 {
 
 }
 
-void CDirectXRenderTargetWindow::Maximize()
+void CD3D11RenderTargetWindow::Maximize()
 {
 
 }
 
-void CDirectXRenderTargetWindow::SwapFrameBuffer()
+void CD3D11RenderTargetWindow::SwapFrameBuffer()
 {
 
 }
 
-void CDirectXRenderTargetWindow::Present()
+void CD3D11RenderTargetWindow::Present()
 {
 	SetRenderTargetView();
 	float clearColor[3] = { 1,1,0 };
