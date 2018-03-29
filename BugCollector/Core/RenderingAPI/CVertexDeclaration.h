@@ -20,11 +20,14 @@ struct FVertexElement
 
 	/* Element type */
 	const EVertexElementType ElementType;
+	/* SemanticName */
+	const CString SemanticName;
 
-	FVertexElement(u32 InOffset, u8 InIndex, EVertexElementType InVertexElementType)
+	FVertexElement(u32 InOffset, u8 InIndex, EVertexElementType InVertexElementType, CString InSemanticName)
 		: Offset(InOffset)
 		, Index(InIndex)
 		, ElementType(InVertexElementType)
+		, SemanticName(InSemanticName)
 	{}
 
 	/* Get element size */

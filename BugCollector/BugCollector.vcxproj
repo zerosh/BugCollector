@@ -148,6 +148,7 @@
     <ClInclude Include="Core\CBootstrap.h" />
     <ClInclude Include="Core\CModule.h" />
     <ClInclude Include="Core\Core.h" />
+    <ClInclude Include="Core\CString.h" />
     <ClInclude Include="Core\Debugging\Debug.h" />
     <ClInclude Include="Core\Delegate.h" />
     <ClInclude Include="Core\Math\CColor.h" />

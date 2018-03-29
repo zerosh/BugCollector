@@ -170,6 +170,9 @@
     <ClInclude Include="Modules\DirectXAPI\CD3D11VertexDeclaration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Core\CString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor\Resource\basicPS.cso" />

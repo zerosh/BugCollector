@@ -14,3 +14,4 @@
 #include "Math/CColor.h"
 #include "Profiler/CProfileManager.h"
 #include "Delegate.h"
+#include "CString.h"

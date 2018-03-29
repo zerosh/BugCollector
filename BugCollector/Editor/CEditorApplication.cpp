@@ -48,7 +48,7 @@ void CEditorApplication::Initialize()
 	*/
 	struct FVertexDeclarationPosition
 	{
-		const FVertexElement Position = FVertexElement(0, 0, Float3);
+		const FVertexElement Position = FVertexElement(0, 0, Float3, "TEST_SEMANTIC_NAME");
 
 		TSharedPtr<CVertexDeclaration> Declaration;
 

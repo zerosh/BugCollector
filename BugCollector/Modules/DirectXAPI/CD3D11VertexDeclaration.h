@@ -43,7 +43,7 @@ private:
 			}
 
 			// TODO: provide a name in "InElements" like POSITION, COLOR, TEXTURECOORD,... 
-			vertexDesc.Add({"POSITION", 0, dxgiFormat, 0, InElements[i].Offset, D3D11_INPUT_PER_VERTEX_DATA, 0 });
+			vertexDesc.Add({InElements[i].SemanticName.c_str(), 0, dxgiFormat, 0, InElements[i].Offset, D3D11_INPUT_PER_VERTEX_DATA, 0 });
 		}
 	}
 	
