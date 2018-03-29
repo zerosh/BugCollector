@@ -1,7 +1,7 @@
 #pragma once
 #include "../../Core/Platform/Platform.h"
 #include "../../Core/RenderingAPI/CVertexBuffer.h"
-
+#include "../../Core/Assertion.h"
 
 class CD3D11VertexBuffer : public CVertexBuffer
 {
@@ -23,6 +23,9 @@ public:
 	// In Length should be renamed into "InTotalSizeInBytes" or so 
 	virtual void Write(const void *InSource, u32 InLength) override
 	{
+		check(InSource);
+		check(InLength > 0)
+
 		D3D11_MAPPED_SUBRESOURCE resource;
 		ZeroMemory(&resource, sizeof(D3D11_MAPPED_SUBRESOURCE));
 

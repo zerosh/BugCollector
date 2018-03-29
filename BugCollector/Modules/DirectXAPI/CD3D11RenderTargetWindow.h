@@ -3,6 +3,9 @@
 #include "../../Core/Platform/Platform.h"
 #include "CD3D11Device.h"
 #include "CD3D11VertexBuffer.h"
+#include "../../Core/Assertion.h"
+#include "../../Core/Math/Vector.h"
+
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
 private:
