@@ -167,6 +167,9 @@
     <ClInclude Include="Core\Delegate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CD3D11VertexDeclaration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor\Resource\basicPS.cso" />

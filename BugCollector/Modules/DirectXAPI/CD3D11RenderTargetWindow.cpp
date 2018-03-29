@@ -1,6 +1,7 @@
 #include "CD3D11RenderTargetWindow.h"
 #include <fstream>
 
+#include "CD3D11VertexDeclaration.h"
 
 CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
@@ -35,6 +36,14 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 		 Vector4f Color;
 	 };
 	 
+
+	 TArray<FVertexElement> vertexElementArray;
+
+	 vertexElementArray.Add({ 0, 0, Float3 });
+	 vertexElementArray.Add({ sizeof(f32) * 3, 1, Float4 });
+	
+	 auto vertexDeclaration =  CD3D11VertexDeclaration::Create(vertexElementArray);
+	
 
 	 TArray<Vertex> VertexData;
 

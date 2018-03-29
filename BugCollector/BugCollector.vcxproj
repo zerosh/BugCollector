@@ -176,6 +176,7 @@
     <ClInclude Include="Modules\DirectXAPI\CD3D11RenderContext.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11VertexBuffer.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11VertexDeclaration.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />

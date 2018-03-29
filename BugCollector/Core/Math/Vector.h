@@ -9,7 +9,6 @@ struct TVector
 template <typename T, u32 NUM>
 struct TVector2 : public TVector<T, NUM>
 {
-public:
 	TVector2()
 	{}
 
