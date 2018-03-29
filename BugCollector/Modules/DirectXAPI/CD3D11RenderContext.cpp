@@ -2,6 +2,7 @@
 #include "CD3D11Device.h"
 #include <dxgi.h>
 
+
 TSharedPtr<CRenderTargetWindow> CD3D11RenderContext::CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	return TSharedPtr<CD3D11RenderTargetWindow>(new CD3D11RenderTargetWindow(D3DDevice, InParentWindow));
@@ -75,9 +76,8 @@ void CD3D11RenderContext::CreateAndSetDevice()
 	auto res = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr, D3D11_CREATE_DEVICE_DEBUG, &featureLevel, 1,
 		D3D11_SDK_VERSION, &device, &fl, &D3DDevice->m_deviceContext);
 
-	if (res == S_FALSE)
-		__debugbreak();
-
+	check(res == S_OK)
+	
 
 	D3DDevice->m_nativeD3DDevice = device;
 }

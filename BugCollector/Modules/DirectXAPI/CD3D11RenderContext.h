@@ -4,7 +4,7 @@
 #include "CD3D11Device.h"
 #include "CD3D11VertexBuffer.h"
 #include "../../Core/RenderingAPI/CRenderCommandBuffer.h"
-
+#include "../../Core/Assertion.h"
 class CD3D11RenderContext : public IRenderContext
 {
 private: 

@@ -1,5 +1,7 @@
 #include "CD3D11RenderTargetWindow.h"
 #include <fstream>
+
+
 CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
@@ -25,45 +27,29 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	 CreateRenderTargetView();
 	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
 
-
-	 //TESTDATA
-	
 	 
-
-	 struct Vector3
-	 {
-		 float x;
-		 float y;
-		 float z;
-	 };
-
-	 struct Vector4
-	 {
-		 float x;
-		 float y;
-		 float z;
-		 float w;
-	 };
-
+	 //TESTDATA
 	 struct Vertex
 	 {
-		 Vector3 Position;
-		 Vector4 Color;
+		 Vector3f Position;
+		 Vector4f Color;
 	 };
+	 
 
 	 TArray<Vertex> VertexData;
 
 	 Vertex v1;
-	 v1.Position = { 0.0f, 0.5f, 0.5f };
-	 v1.Color = { 1,0,0,1 };
+	 v1.Position = Vector3f(0.0f, 0.5f, 0.5f);
+	 v1.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
 
 	 Vertex v2;
-	 v2.Position = { 0.5f, -0.5f, 0.5f };
-	 v2.Color = { 1,0,0,1 };
+	 v2.Position = Vector3f(0.5f, -0.5f, 0.5f);
+	 v2.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
 
 	 Vertex v3;
-	 v3.Position = { -0.5f, -0.5f, 0.5f };
-	 v3.Color = { 1,0,0,1 };
+	 v3.Position = Vector3f(-0.5f, -0.5f, 0.5f);
+	 v3.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
+
 
 	 VertexData.Add(v1);
 	 VertexData.Add(v2);
@@ -77,7 +63,7 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	 vBuffer = new CD3D11VertexBuffer(*InD3DDevice->m_nativeD3DDevice, *InD3DDevice->m_deviceContext, vertexBufferCreateInfo);
 	 vBuffer->Write(VertexData.GetData(), sizeof(v1)*3);
 	 
-
+	 
 	 std::ifstream vsFile("Editor/Resource/basicVS.cso", std::ios::binary);
 	 std::ifstream psFile("Editor/Resource/basicPS.cso", std::ios::binary);
 
@@ -106,6 +92,9 @@ CD3D11RenderTargetWindow::~CD3D11RenderTargetWindow()
 
 void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
 {
+	check(handle)
+	check(InWindowWidth > 0 && InWindowHeight > 0) 
+
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
 
@@ -170,6 +159,8 @@ void CD3D11RenderTargetWindow::SetRenderTargetView()
 
 void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight)
 {
+	check(InWindowWidth > 0 && InWindowHeight > 0)
+
 	D3D11_VIEWPORT vp;
 	vp.Width = (FLOAT)InWindowWidth;
 	vp.Height = (FLOAT)InWindowHeight;
@@ -177,6 +168,7 @@ void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWin
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
 	vp.TopLeftY = 0;
+
 	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
 
 }
