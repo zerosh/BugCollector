@@ -45,7 +45,7 @@ TSharedPtr<CRenderCommandBuffer> CD3D11RenderContext::CreateCommandBuffer()
 	return TSharedPtr<CRenderCommandBuffer>(new CRenderCommandBuffer());
 }
 
-void CD3D11RenderContext::SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget)
+void CD3D11RenderContext::SetRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget)
 {
 	auto Command = [=]()
 	{
@@ -55,7 +55,7 @@ void CD3D11RenderContext::SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCom
 	InCommandBuffer->AddCommand(Command);
 }
 
-void CD3D11RenderContext::ClearRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const CColor &InClearColor, f32 InDepth)
+void CD3D11RenderContext::ClearRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const CColor &InClearColor, f32 InDepth)
 {
 	auto Command = [=]()
 	{

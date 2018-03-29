@@ -22,7 +22,7 @@ public:
 
 	virtual TSharedPtr<CRenderCommandBuffer> CreateCommandBuffer() override;
 
-	virtual void SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget) override;
+	virtual void SetRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget) override;
 
-	virtual void ClearRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const CColor &InClearColor, f32 InDepth) override;
+	virtual void ClearRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const CColor &InClearColor, f32 InDepth) override;
 };

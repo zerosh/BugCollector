@@ -34,8 +34,8 @@ public:
 	virtual TSharedPtr<CRenderCommandBuffer> CreateCommandBuffer() = 0;
 
 	/* Set the target you want to render to. */
-	virtual void SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget) = 0;
+	virtual void SetRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget) = 0;
 
 	/* Clear the render target */
-	virtual void ClearRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const CColor &InClearColor, f32 InDepth) = 0;
+	virtual void ClearRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const CColor &InClearColor, f32 InDepth) = 0;
 };
