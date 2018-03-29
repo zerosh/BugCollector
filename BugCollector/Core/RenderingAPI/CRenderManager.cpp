@@ -18,3 +18,8 @@ CRenderManager::~CRenderManager()
 {
 
 }
+
+IRenderContext* gRenderContext()
+{
+	return CRenderManager::Instance().GetRenderContext().get();
+}

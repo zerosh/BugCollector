@@ -12,3 +12,5 @@
 #include "TArray.h"
 #include "math/Vector.h"
 #include "Math/CColor.h"
+#include "Profiler/CProfileManager.h"
+#include "Delegate.h"

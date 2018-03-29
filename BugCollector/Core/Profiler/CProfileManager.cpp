@@ -9,5 +9,6 @@ FCPUProfile & CProfileManager::GetCPUProfile()
 
 void CProfileManager::Reset()
 {
-	CPUProfile.Reset();
+	CPUProfile = FCPUProfile();
+	GPUProfile = FGPUProfile();
 }

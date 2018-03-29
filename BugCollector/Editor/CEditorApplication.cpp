@@ -17,10 +17,17 @@ void CEditorApplication::Initialize()
 	/* Setting up a child window */
 	TSharedPtr<CRenderTargetWindow> MainWindow = CWindowManager::Instance().GetMainWindow();
 
-	auto second = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(MainWindow);
-	second->SetVerticalSync(true);
-	CWindowManager::Instance().AddWindow(second);
+	/* Render command */
+	TSharedPtr<CRenderCommandBuffer> CommandBuffer = gRenderContext()->CreateCommandBuffer();
+	gRenderContext()->SetRenderTarget(CommandBuffer, MainWindow);
+	gRenderContext()->ClearRenderTarget(CommandBuffer, CColor(0, 1, 0, 1), 0);
+	gRenderContext()->Present(CommandBuffer, MainWindow);
+	MainWindow->SetCommandBuffer(CommandBuffer);
 
+	/* Second window setup. */
+	//auto second = gRenderContext()->CreateRenderTargetWindow(MainWindow);
+	//second->SetVerticalSync(true);
+	//CWindowManager::Instance().AddWindow(second);
 
 	FVertexBufferCreateInfo createInfo;
 	createInfo.BufferUsage = Static;
@@ -55,9 +62,4 @@ void CEditorApplication::Initialize()
 	};
 
 	FVertexDeclarationPosition VertexDeclarationPosition;
-
-
-	//auto SceneWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow(MainWindow);
-	//SceneWindow->SetVerticalSync(true);
-	//CWindowManager::Instance().AddWindow(SceneWindow);
 }

@@ -1,15 +1,28 @@
 #pragma once
 #include "../Core.h"
 #include "CRenderTarget.h"
+#include "CRenderCommandBuffer.h"
 
 /*
 	Interface between the generic api and a window you can render content to.
 */
 class CRenderTargetWindow : public CRenderTarget
 {
-
+private:
+	TSharedPtr<CRenderCommandBuffer> CommandBuffer;
 public:
-		/* Set fullscreen window. */
+
+	void SetCommandBuffer(TSharedPtr<CRenderCommandBuffer> InCommandBuffer)
+	{
+		CommandBuffer = InCommandBuffer;
+	}
+
+	TSharedPtr<CRenderCommandBuffer> GetCommandBuffer() const
+	{
+		return CommandBuffer;
+	}
+
+	/* Set fullscreen window. */
 	virtual void SetFullscreen();
 
 	/* Set window fullscreen windowed. */

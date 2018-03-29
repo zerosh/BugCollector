@@ -3,6 +3,7 @@
 #include "CRenderTargetWindow.h"
 #include "CVertexBuffer.h"
 #include "CVertexDeclaration.h"
+#include "CRenderCommandBuffer.h"
 
 /*
 	Abstract render context that rendering api should implement.
@@ -23,5 +24,18 @@ public:
 	virtual TSharedPtr<CVertexDeclaration> CreateVertexDeclaration(const TArray<FVertexElement> &InElements) = 0;
 
 	/* Present a render target window. */
-	virtual void Present(TSharedPtr<CRenderTargetWindow> InRenderTarget) = 0;
+	virtual void Present(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, TSharedPtr<CRenderTargetWindow> InRenderTarget) = 0;
+
+	/*
+		Rendering instructions.
+	*/
+
+	/* Create a command buffer, that you can record rendering instructions into.  */
+	virtual TSharedPtr<CRenderCommandBuffer> CreateCommandBuffer() = 0;
+
+	/* Set the target you want to render to. */
+	virtual void SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget) = 0;
+
+	/* Clear the render target */
+	virtual void ClearRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const CColor &InClearColor, f32 InDepth) = 0;
 };

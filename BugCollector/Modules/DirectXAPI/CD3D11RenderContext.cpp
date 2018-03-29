@@ -14,20 +14,55 @@ void CD3D11RenderContext::Initialize()
 	CreateAndSetDevice();	
 }
 
-void CD3D11RenderContext::Present(TSharedPtr<CRenderTargetWindow> InRenderTarget)
+void CD3D11RenderContext::Present(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, TSharedPtr<CRenderTargetWindow> InRenderTarget)
 {
-	InRenderTarget->DispatchWindowsMessage();
-	InRenderTarget->Present();
+	auto command = [=]() 
+	{
+		InRenderTarget->DispatchWindowsMessage();
+		InRenderTarget->Present();
+
+		GPU_RENDER_STAT(Present);
+	};
+
+	InCommandBuffer->AddCommand(command);
 }
 
 TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo)
 {
+	GPU_RENDER_STAT(CreateVertexBuffer);
+
 	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, *D3DDevice->m_deviceContext, InVertexBufferCreateInfo));
 }
 
 TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
 {
 	return TSharedPtr<CVertexDeclaration>(new CVertexDeclaration(InElements));
+}
+
+TSharedPtr<CRenderCommandBuffer> CD3D11RenderContext::CreateCommandBuffer()
+{
+	GPU_RENDER_STAT(CreateCommandBuffer);
+	return TSharedPtr<CRenderCommandBuffer>(new CRenderCommandBuffer());
+}
+
+void CD3D11RenderContext::SetRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const TSharedPtr<CRenderTarget> &InRenderTarget)
+{
+	auto Command = [=]()
+	{
+		GPU_RENDER_STAT(SetRenderTarget);
+	};
+
+	InCommandBuffer->AddCommand(Command);
+}
+
+void CD3D11RenderContext::ClearRenderTarget(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, const CColor &InClearColor, f32 InDepth)
+{
+	auto Command = [=]()
+	{
+		GPU_RENDER_STAT(ClearRenderTarget);
+	};
+
+	InCommandBuffer->AddCommand(Command);
 }
 
 void CD3D11RenderContext::CreateAndSetDevice()

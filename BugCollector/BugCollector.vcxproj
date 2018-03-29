@@ -149,6 +149,7 @@
     <ClInclude Include="Core\CModule.h" />
     <ClInclude Include="Core\Core.h" />
     <ClInclude Include="Core\Debugging\Debug.h" />
+    <ClInclude Include="Core\Delegate.h" />
     <ClInclude Include="Core\Math\CColor.h" />
     <ClInclude Include="Core\Math\Vector.h" />
     <ClInclude Include="Core\Platform\Platform.h" />
@@ -156,6 +157,8 @@
     <ClInclude Include="Core\Pointer.h" />
     <ClInclude Include="Core\Profiler\CProfileManager.h" />
     <ClInclude Include="Core\Profiler\FCPUProfile.h" />
+    <ClInclude Include="Core\Profiler\FGPUProfile.h" />
+    <ClInclude Include="Core\RenderingAPI\CRenderCommandBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="Core\RenderingAPI\CVertexDeclaration.h" />
     <ClInclude Include="Core\RenderingAPI\Material\CMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\Material\IMaterialCompiler.h" />
+    <ClInclude Include="Core\RenderingAPI\RenderingAPI.h" />
     <ClInclude Include="Core\WindowManager.h" />
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
     <ClInclude Include="Core\TArray.h" />
@@ -176,6 +180,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Math\CColor.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CRenderCommandBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />

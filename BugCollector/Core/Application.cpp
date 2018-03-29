@@ -3,6 +3,7 @@
 
 #include "Profiler/CProfileManager.h"
 #include "../Modules/DirectXAPI/CD3D11RenderContext.h"
+#include "RenderingAPI/CRenderCommandBuffer.h"
 
 CApplication::CApplication()
 {
@@ -50,6 +51,4 @@ void CApplication::Run()
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
 	}
-
-	
 }

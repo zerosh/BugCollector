@@ -19,12 +19,11 @@ void CWindowManager::AddWindow(TSharedPtr<CRenderTargetWindow> InWindow)
 void CWindowManager::Render()
 {
 	/* Render the main window. */
-	CRenderManager::Instance().GetRenderContext()->Present(MainWindow);
+	MainWindow->GetCommandBuffer()->Execute();
 
 	/* Render all the child windows. */
 	for (u32 i = 0; i < Windows.Num(); i++)
 	{
-		TSharedPtr<CRenderTargetWindow> window = Windows[i];
-		CRenderManager::Instance().GetRenderContext()->Present(window);
+		Windows[i]->GetCommandBuffer()->Execute();
 	}
 }

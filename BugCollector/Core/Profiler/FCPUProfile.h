@@ -15,10 +15,4 @@ struct FCPUProfile
 	{
 		NumDeletes++;
 	}
-
-	void Reset()
-	{
-		NumAllocations = 0;
-		NumDeletes = 0;
-	}
 };
