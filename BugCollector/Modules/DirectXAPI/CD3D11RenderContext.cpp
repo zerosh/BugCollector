@@ -61,6 +61,7 @@ void CD3D11RenderContext::ClearRenderTarget(const TSharedPtr<CRenderCommandBuffe
 	auto Command = [=]()
 	{
 		GPU_RENDER_STAT(ClearRenderTarget);
+	
 	};
 
 	InCommandBuffer->AddCommand(Command);

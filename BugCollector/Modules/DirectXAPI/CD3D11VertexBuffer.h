@@ -9,15 +9,17 @@ private:
 	ID3D11Device& m_D3DDevice;
 	ID3D11DeviceContext& m_D3DDeviceContext;
 	ID3D11Buffer* vertexBuffer;
-	
+
+//TESTDATA
+public:
+	ID3D11Buffer * const* GetBuffer() { return &vertexBuffer; };
 
 public:
 
 	CD3D11VertexBuffer(ID3D11Device& inD3DDevice, ID3D11DeviceContext& inD3DDeviceContext, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
 		:m_D3DDevice(inD3DDevice), m_D3DDeviceContext(inD3DDeviceContext)
 	{
-		CreateBuffer(InVertexBufferCreateInfo);
-		
+		CreateBuffer(InVertexBufferCreateInfo);	
 	}
 
 	// In Length should be renamed into "InTotalSizeInBytes" or so 
@@ -40,21 +42,16 @@ private:
 	{
 		D3D11_BUFFER_DESC vertexBufferDesc;
 
-		
 		vertexBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
 		vertexBufferDesc.ByteWidth = InVertexBufferCreateInfo.VertexStride * InVertexBufferCreateInfo.NumVertices;
 		vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		vertexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		vertexBufferDesc.MiscFlags = 0;
-
-		
-		m_D3DDevice.CreateBuffer(&vertexBufferDesc, 0, &vertexBuffer);
-		
+	
+		m_D3DDevice.CreateBuffer(&vertexBufferDesc, 0, &vertexBuffer);		
 	}
 
-	//TESTDATA
-public:
-	ID3D11Buffer* const* GetBuffer()  { return &vertexBuffer; };
+
 
 };
 

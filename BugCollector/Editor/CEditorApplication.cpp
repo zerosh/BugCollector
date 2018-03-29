@@ -62,5 +62,4 @@ void CEditorApplication::Initialize()
 	};
 
 	FVertexDeclarationPosition VertexDeclarationPosition;
-	
 }

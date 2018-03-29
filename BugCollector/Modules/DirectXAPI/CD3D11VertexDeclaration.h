@@ -7,13 +7,14 @@ class CD3D11VertexDeclaration : public CVertexDeclaration
 private:
 	TArray<D3D11_INPUT_ELEMENT_DESC> vertexDesc;
 public:
+	TArray<D3D11_INPUT_ELEMENT_DESC> const GetVertexDesc() { return vertexDesc; };
+
+public:
 	CD3D11VertexDeclaration(const TArray<FVertexElement> &InElements)
 		:CVertexDeclaration(InElements)
 	{
 		CreateVertexDec(InElements);
 	}
-
-	TArray<D3D11_INPUT_ELEMENT_DESC> const GetVertexDesc() { return vertexDesc; };
 
 private:
 	void CreateVertexDec(const TArray<FVertexElement> &InElements)
