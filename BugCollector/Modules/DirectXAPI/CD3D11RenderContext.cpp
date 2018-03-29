@@ -37,7 +37,7 @@ TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexB
 
 TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
 {
-	return TSharedPtr<CVertexDeclaration>(new CVertexDeclaration(InElements));
+	return TSharedPtr<CVertexDeclaration>(new CD3D11VertexDeclaration(InElements));
 }
 
 TSharedPtr<CRenderCommandBuffer> CD3D11RenderContext::CreateCommandBuffer()

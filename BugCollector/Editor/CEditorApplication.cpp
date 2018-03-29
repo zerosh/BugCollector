@@ -35,14 +35,14 @@ void CEditorApplication::Initialize()
 	createInfo.VertexStride = sizeof(u32);
 
 	auto vb = CVertexBuffer::Create(createInfo);
-
+	
 	TArray<f32> VertexData;
 	VertexData.Add(0.0f);
 	VertexData.Add(1.0f);
 	VertexData.Add(2.0f);
 
 	vb->Write(VertexData.GetData(), VertexData.Num());
-
+	
 	/* 
 		Test declaration of the vertex input element 
 	*/
@@ -62,4 +62,5 @@ void CEditorApplication::Initialize()
 	};
 
 	FVertexDeclarationPosition VertexDeclarationPosition;
+	
 }

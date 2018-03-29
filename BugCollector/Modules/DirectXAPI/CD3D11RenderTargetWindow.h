@@ -6,6 +6,7 @@
 #include "../../Core/Assertion.h"
 #include "../../Core/Math/Vector.h"
 
+
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
 private:

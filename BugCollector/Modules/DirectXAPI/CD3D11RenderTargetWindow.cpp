@@ -37,14 +37,9 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	 };
 	 
 
-	 TArray<FVertexElement> vertexElementArray;
-
-	 vertexElementArray.Add({ 0, 0, Float3 });
-	 vertexElementArray.Add({ sizeof(f32) * 3, 1, Float4 });
 	
-	 auto vertexDeclaration =  CD3D11VertexDeclaration::Create(vertexElementArray);
 	
-
+	
 	 TArray<Vertex> VertexData;
 
 	 Vertex v1;
@@ -87,6 +82,7 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA,0 },
 
 	 };
+
 
 	 D3DDevice->m_nativeD3DDevice->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 	 D3DDevice->m_nativeD3DDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
