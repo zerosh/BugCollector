@@ -82,9 +82,9 @@ void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer>
 		/* TODO: Get the window handle and set the vertex buffer. */
 
 		/* @ ZROSH: Is this how things going? */
-
-		// CD3D11VertexBuffer* xx = &dynamic_cast<CD3D11VertexBuffer&>(*InVertexBuffer);
-		// D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, xx->GetBuffer(), 0, 0);
+	
+		 CD3D11VertexBuffer* xx = &dynamic_cast<CD3D11VertexBuffer&>(*InVertexBuffer);
+		 D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, xx->GetBuffer(), 0, 0);
 
 		GPU_RENDER_STAT(SetVertexBuffer);
 	};
@@ -97,7 +97,10 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 	auto Command = [=]()
 	{
 		/* TODO: Get the window handle and set the vertex buffer. */
+		CD3D11VertexDeclaration* xx = &static_cast<CD3D11VertexDeclaration&>(*InVertexDeclaration);
 		
+	//	D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc().GetData(), 2, vsData.data(), vsData.size(), &inputLayout);
+	//	D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
 		GPU_RENDER_STAT(SetVertexDeclaration);
 	};
 

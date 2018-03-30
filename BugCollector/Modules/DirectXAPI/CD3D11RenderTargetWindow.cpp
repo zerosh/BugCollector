@@ -86,6 +86,7 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 
 	 D3DDevice->m_nativeD3DDevice->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
 	 D3DDevice->m_nativeD3DDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
+
 	 D3DDevice->m_nativeD3DDevice->CreateInputLayout(vertexDesc, 2, vsData.data(), vsData.size(), &inputLayout);
 	 //----------------------------
 }
