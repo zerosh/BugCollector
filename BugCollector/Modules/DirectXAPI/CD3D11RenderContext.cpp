@@ -50,6 +50,8 @@ void CD3D11RenderContext::SetRenderTarget(const TSharedPtr<CRenderCommandBuffer>
 {
 	auto Command = [=]()
 	{
+		/* TODO: Cache the RenderTarget locally, so the other instructions can work on the operations. */
+
 		GPU_RENDER_STAT(SetRenderTarget);
 	};
 
@@ -60,8 +62,34 @@ void CD3D11RenderContext::ClearRenderTarget(const TSharedPtr<CRenderCommandBuffe
 {
 	auto Command = [=]()
 	{
+		/* TODO: Clear the background for the render target */
+
 		GPU_RENDER_STAT(ClearRenderTarget);
 	
+	};
+
+	InCommandBuffer->AddCommand(Command);
+}
+
+void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexBuffer> &InVertexBuffer)
+{
+	auto Command = [=]()
+	{
+		/* TODO: Get the window handle and set the vertex buffer. */
+
+		GPU_RENDER_STAT(SetVertexBuffer);
+	};
+
+	InCommandBuffer->AddCommand(Command);
+}
+
+void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexDeclaration> &InVertexDeclaration)
+{
+	auto Command = [=]()
+	{
+		/* TODO: Get the window handle and set the vertex buffer. */
+
+		GPU_RENDER_STAT(SetVertexDeclaration);
 	};
 
 	InCommandBuffer->AddCommand(Command);

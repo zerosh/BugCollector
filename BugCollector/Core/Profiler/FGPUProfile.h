@@ -7,6 +7,8 @@ struct FGPUProfile
 	u32 NumSetRenderTargets;
 	u32 NumClearRenderTargets;
 	u32 NumCommandBufferAllocations;
+	u32 NumSetVertexBuffer;
+	u32 NumSetVertexDeclarations;
 
 	void AddCreateVertexBuffer()
 	{
@@ -31,5 +33,15 @@ struct FGPUProfile
 	void AddCreateCommandBuffer()
 	{
 		NumCommandBufferAllocations++;
+	}
+
+	void AddSetVertexBuffer()
+	{
+		NumSetVertexBuffer++;
+	}
+
+	void AddSetVertexDeclaration()
+	{
+		NumSetVertexDeclarations++;
 	}
 };
