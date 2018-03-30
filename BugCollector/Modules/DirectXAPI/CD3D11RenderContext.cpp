@@ -95,6 +95,18 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 	InCommandBuffer->AddCommand(Command);
 }
 
+void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const u32 InNumVertices)
+{
+	auto Command = [=]()
+	{
+		/* Get the current RenderTargetWindow, D3DDevice->m_deviceContext->Draw(3, 0);*/
+
+		GPU_RENDER_STAT(DrawPrimitive);
+	};
+
+	InCommandBuffer->AddCommand(Command);
+}
+
 void CD3D11RenderContext::CreateAndSetDevice()
 {
 	ID3D11Device* device = nullptr;

@@ -79,8 +79,9 @@ void CEditorApplication::Initialize()
 	TSharedPtr<CRenderCommandBuffer> CommandBuffer = gRenderContext()->CreateCommandBuffer();
 	gRenderContext()->SetRenderTarget(CommandBuffer, MainWindow);
 	gRenderContext()->ClearRenderTarget(CommandBuffer, CColor(0, 1, 0, 1), 0);
-	gRenderContext()->SetVertexBuffer(CommandBuffer, VertexBufferhandle);
 	gRenderContext()->SetVertexDeclaration(CommandBuffer, VertexDeclarationPosition.Declaration);
+	gRenderContext()->SetVertexBuffer(CommandBuffer, VertexBufferhandle);
+	gRenderContext()->DrawPrimitive(CommandBuffer, VertexData.Num());
 	gRenderContext()->Present(CommandBuffer, MainWindow);
 	MainWindow->SetCommandBuffer(CommandBuffer);
 

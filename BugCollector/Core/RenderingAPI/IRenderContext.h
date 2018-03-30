@@ -39,7 +39,12 @@ public:
 	/* Clear the render target */
 	virtual void ClearRenderTarget(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const CColor &InClearColor, f32 InDepth) = 0;
 
+	/* Set the current vertex buffer */
 	virtual void SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexBuffer> &InVertexBuffer) = 0;
 
+	/* Set the current vertex declaration s*/
 	virtual void SetVertexDeclaration(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexDeclaration> &InVertexDeclaration) = 0;
+
+	/* Draw vertices  */
+	virtual void DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const u32 InNumVertices) = 0;
 };
