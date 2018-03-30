@@ -55,7 +55,7 @@ void CEditorApplication::Initialize()
 	struct FVertexDeclarationPosition
 	{
 		const FVertexElement Position = FVertexElement(0, 0, Float3, "POSITION");
-		const FVertexElement Color = FVertexElement(0, 0, Float4, "COLOR");
+		const FVertexElement Color = FVertexElement(sizeof(Vector3f), 1, Float4, "COLOR");
 
 		TSharedPtr<CVertexDeclaration> Declaration;
 
