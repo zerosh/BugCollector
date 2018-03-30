@@ -80,7 +80,12 @@ void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer>
 	auto Command = [=]()
 	{
 		/* TODO: Get the window handle and set the vertex buffer. */
-		//D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, InVertexBuffer, 0, 0);
+
+		/* @ ZROSH: Is this how things going? */
+
+		// CD3D11VertexBuffer* xx = &dynamic_cast<CD3D11VertexBuffer&>(*InVertexBuffer);
+		// D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, xx->GetBuffer(), 0, 0);
+
 		GPU_RENDER_STAT(SetVertexBuffer);
 	};
 
