@@ -21,7 +21,7 @@ void CD3D11RenderContext::Present(TSharedPtr<CRenderCommandBuffer> InCommandBuff
 	{
 		InRenderTarget->DispatchWindowsMessage();
 		InRenderTarget->Present();
-
+		
 		GPU_RENDER_STAT(Present);
 	};
 
@@ -51,6 +51,8 @@ void CD3D11RenderContext::SetRenderTarget(const TSharedPtr<CRenderCommandBuffer>
 	auto Command = [=]()
 	{
 		/* TODO: Cache the RenderTarget locally, so the other instructions can work on the operations. */
+	
+		m_RenderTargetWindow = &dynamic_cast<CD3D11RenderTargetWindow&>(*InRenderTarget);
 
 		GPU_RENDER_STAT(SetRenderTarget);
 	};
@@ -63,7 +65,9 @@ void CD3D11RenderContext::ClearRenderTarget(const TSharedPtr<CRenderCommandBuffe
 	auto Command = [=]()
 	{
 		/* TODO: Clear the background for the render target */
+		float clearColor[4] = { InClearColor.GetR(), InClearColor.GetG(), InClearColor.GetB(), InClearColor.GetA() };
 
+		D3DDevice->m_deviceContext->ClearRenderTargetView(m_RenderTargetWindow->GetRenderTargetView(), clearColor);
 		GPU_RENDER_STAT(ClearRenderTarget);
 	
 	};
@@ -76,7 +80,7 @@ void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer>
 	auto Command = [=]()
 	{
 		/* TODO: Get the window handle and set the vertex buffer. */
-
+		//D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, InVertexBuffer, 0, 0);
 		GPU_RENDER_STAT(SetVertexBuffer);
 	};
 
@@ -88,7 +92,7 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 	auto Command = [=]()
 	{
 		/* TODO: Get the window handle and set the vertex buffer. */
-
+		
 		GPU_RENDER_STAT(SetVertexDeclaration);
 	};
 
@@ -100,7 +104,7 @@ void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &
 	auto Command = [=]()
 	{
 		/* Get the current RenderTargetWindow, D3DDevice->m_deviceContext->Draw(3, 0);*/
-
+	//	D3DDevice->m_deviceContext->Draw(3, 0);
 		GPU_RENDER_STAT(DrawPrimitive);
 	};
 

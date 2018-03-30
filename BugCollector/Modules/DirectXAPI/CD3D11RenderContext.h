@@ -11,6 +11,7 @@ class CD3D11RenderContext : public IRenderContext
 {
 private: 
 	TSharedPtr<CD3D11Device> D3DDevice;
+	CD3D11RenderTargetWindow* m_RenderTargetWindow = nullptr;
 	void CreateAndSetDevice();
 public:
 	CD3D11RenderContext();

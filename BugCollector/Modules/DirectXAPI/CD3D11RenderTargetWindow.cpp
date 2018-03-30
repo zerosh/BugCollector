@@ -280,7 +280,7 @@ void CD3D11RenderTargetWindow::SwapFrameBuffer()
 void CD3D11RenderTargetWindow::Present()
 {
 	SetRenderTargetView();
-	float clearColor[3] = { 0.390f, 0.58f, 0.6f };
+	/*float clearColor[3] = { 0.390f, 0.58f, 0.6f };
 	
 	
 	D3DDevice->m_deviceContext->ClearRenderTargetView(m_RederTargetView, clearColor);
@@ -302,6 +302,6 @@ void CD3D11RenderTargetWindow::Present()
 	D3DDevice->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 	D3DDevice->m_deviceContext->Draw(3, 0);
 	//-----------------------
-
+	*/
 	m_SwapChain->Present(1, 0);
 }

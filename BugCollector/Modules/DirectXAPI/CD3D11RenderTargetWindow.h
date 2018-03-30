@@ -9,7 +9,7 @@
 
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
-private:
+	private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3D11Device> D3DDevice;
 
@@ -25,9 +25,10 @@ private:
 	ID3D11InputLayout* inputLayout = nullptr;
 	//------------
 public:
+	
 	CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
-
 	~CD3D11RenderTargetWindow();
+	ID3D11RenderTargetView* GetRenderTargetView() const { return m_RederTargetView; };
 
 private:
 	void CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight);
