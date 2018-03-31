@@ -12,5 +12,5 @@
 #include <DirectXMath.h>
 #include <DXGI.h>
 #include <DXGI1_2.h>
-
+#include <D3Dcompiler.h>
 #endif

@@ -1,22 +1,29 @@
 #include "CD3D11RenderTargetWindow.h"
-#include <fstream>
-
 #include "CD3D11VertexDeclaration.h"
 
 void CD3D11RenderTargetWindow::SetUpTempTestData()
 {
-	std::ifstream vsFile("Editor/Resource/basicVS.cso", std::ios::binary);
-	std::ifstream psFile("Editor/Resource/basicPS.cso", std::ios::binary);
+	ID3DBlob* vsBlob;
+	D3DReadFileToBlob(L"Editor/Resource/basicVS.cso", &vsBlob);
+	D3DDevice->m_nativeD3DDevice->CreateVertexShader(vsBlob->GetBufferPointer(), vsBlob->GetBufferSize(), nullptr, &vertexShader);
 
+	ID3DBlob* psBlob;
+	D3DReadFileToBlob(L"Editor/Resource/basicPS.cso", &psBlob);
+	D3DDevice->m_nativeD3DDevice->CreatePixelShader(psBlob->GetBufferPointer(), psBlob->GetBufferSize(), nullptr, &pixelShader);
 
-	 vsData = { std::istreambuf_iterator<char>(vsFile), std::istreambuf_iterator<char>() };
-	 std::vector<char> psData = { std::istreambuf_iterator<char>(psFile), std::istreambuf_iterator<char>() };
+	D3DDevice->m_deviceContext->VSSetShader(vertexShader, nullptr, 0);
+	D3DDevice->m_deviceContext->PSSetShader(pixelShader, nullptr, 0);
+
+	// Read the vsBlob into vsData, this is required for creating the Input Layout later
+	char* x = static_cast<char*>(vsBlob->GetBufferPointer());
+	for (u32 i = 0; i < vsBlob->GetBufferSize(); i++)
+	{
+		vsData.Add(*x);
+		x++;
+	}
 	
-	 D3DDevice->m_nativeD3DDevice->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &vertexShader);
-	 D3DDevice->m_nativeD3DDevice->CreatePixelShader(psData.data(), psData.size(), nullptr, &pixelShader);
-	 D3DDevice->m_deviceContext->VSSetShader(vertexShader, nullptr, 0);
-	 D3DDevice->m_deviceContext->PSSetShader(pixelShader, nullptr, 0);
-
+	vsBlob->Release();
+	psBlob->Release();
 }
 
 CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)

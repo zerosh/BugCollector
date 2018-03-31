@@ -100,7 +100,7 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 
 		// TODO: Creating InputLayout only for Test purpose here
 		ID3D11InputLayout* inputLayout;
-		D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc()->GetData(), 2, m_RenderTargetWindow->vsData.data(), m_RenderTargetWindow->vsData.size(), &inputLayout);
+		D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc()->GetData(), 2, m_RenderTargetWindow->vsData.GetData(), m_RenderTargetWindow->vsData.Num(), &inputLayout);
 		D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
 
 		inputLayout->Release();

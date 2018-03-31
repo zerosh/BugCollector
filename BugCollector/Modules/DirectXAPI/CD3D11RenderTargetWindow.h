@@ -5,7 +5,7 @@
 #include "CD3D11VertexBuffer.h"
 #include "../../Core/Assertion.h"
 #include "../../Core/Math/Vector.h"
-
+#include "../../Core/TArray.h"
 
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
@@ -24,8 +24,8 @@ public:
 	ID3D11VertexShader* vertexShader = nullptr;
 	ID3D11PixelShader* pixelShader = nullptr;
 	ID3D11InputLayout* inputLayout = nullptr;
-	std::vector<char> vsData;
-
+	TArray<char> vsData;
+	
 	//------------
 public:
 	void SetUpTempTestData();
