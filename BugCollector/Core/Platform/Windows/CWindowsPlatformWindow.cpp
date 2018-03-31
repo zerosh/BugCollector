@@ -8,7 +8,7 @@ LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wPa
 		ValidateRect(hwnd, NULL);
 		break;
 	case WM_CLOSE:
-		DestroyWindow(hwnd);
+		//DestroyWindow(hwnd);
 		PostQuitMessage(0);
 		break;
 	 default:
@@ -53,7 +53,7 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 		dwExStyle = WS_EX_APPWINDOW | WS_EX_WINDOWEDGE;
 
 		// montify: ( Activated during debugging )
-		dwStyle = WS_POPUP| WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
+		dwStyle = WS_POPUP | WS_OVERLAPPEDWINDOW | WS_CLIPSIBLINGS | WS_CLIPCHILDREN;
 	}
 
 	const u32 screenWidth = GetSystemMetrics(SM_CXSCREEN);

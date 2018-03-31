@@ -50,4 +50,5 @@ void CApplication::Run()
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
 	}
+	
 }
