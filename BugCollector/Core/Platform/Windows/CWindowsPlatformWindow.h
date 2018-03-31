@@ -45,7 +45,7 @@ public:
 	HWND GetHandle() const;
 
 
-	void Run();
+	void PeekMessageLoop();
 
 	
 };

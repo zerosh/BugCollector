@@ -137,7 +137,7 @@ void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWin
 
 void CD3D11RenderTargetWindow::DispatchWindowsMessage()
 {
-	PlatformWindow.Run();
+	PlatformWindow.PeekMessageLoop();
 }
 
 void CD3D11RenderTargetWindow::SetFullscreen()

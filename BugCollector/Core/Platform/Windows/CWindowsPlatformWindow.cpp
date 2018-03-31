@@ -111,7 +111,7 @@ HWND CWindowsPlatformWindow::GetHandle() const
 	return WindowHandle;
 }
 
-void CWindowsPlatformWindow::Run()
+void CWindowsPlatformWindow::PeekMessageLoop()
 {
 	MSG msg = {};
 

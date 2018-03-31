@@ -7,7 +7,5 @@ int main()
 	CBootstrap::Run(&editorApplication);
 
 
-
-	printf("A");
 	return 0;
 }
