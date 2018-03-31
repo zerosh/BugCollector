@@ -18,14 +18,17 @@ class CD3D11RenderTargetWindow : public CRenderTargetWindow
 	ID3D11Texture2D* m_BackBuffer = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
 
+public:
 	// TESTDATA
 	CD3D11VertexBuffer* vBuffer;
 	ID3D11VertexShader* vertexShader = nullptr;
 	ID3D11PixelShader* pixelShader = nullptr;
 	ID3D11InputLayout* inputLayout = nullptr;
+	std::vector<char> vsData;
+
 	//------------
 public:
-	
+	void SetUpTempTestData();
 	CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
 	~CD3D11RenderTargetWindow();
 	ID3D11RenderTargetView* GetRenderTargetView() const { return m_RederTargetView; };

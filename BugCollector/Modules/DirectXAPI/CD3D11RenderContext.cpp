@@ -11,7 +11,7 @@ TSharedPtr<CRenderTargetWindow> CD3D11RenderContext::CreateRenderTargetWindow(TS
 void CD3D11RenderContext::Initialize()
 {
 	D3DDevice = TSharedPtr<CD3D11Device>(new CD3D11Device());
-
+	
 	CreateAndSetDevice();	
 }
 
@@ -50,10 +50,8 @@ void CD3D11RenderContext::SetRenderTarget(const TSharedPtr<CRenderCommandBuffer>
 {
 	auto Command = [=]()
 	{
-		/* TODO: Cache the RenderTarget locally, so the other instructions can work on the operations. */
-	
 		m_RenderTargetWindow = &dynamic_cast<CD3D11RenderTargetWindow&>(*InRenderTarget);
-
+		
 		GPU_RENDER_STAT(SetRenderTarget);
 	};
 
@@ -64,10 +62,10 @@ void CD3D11RenderContext::ClearRenderTarget(const TSharedPtr<CRenderCommandBuffe
 {
 	auto Command = [=]()
 	{
-		/* TODO: Clear the background for the render target */
 		float clearColor[4] = { InClearColor.GetR(), InClearColor.GetG(), InClearColor.GetB(), InClearColor.GetA() };
 
 		D3DDevice->m_deviceContext->ClearRenderTargetView(m_RenderTargetWindow->GetRenderTargetView(), clearColor);
+
 		GPU_RENDER_STAT(ClearRenderTarget);
 	
 	};
@@ -84,7 +82,9 @@ void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer>
 		/* @ ZROSH: Is this how things going? */
 	
 		 CD3D11VertexBuffer* xx = &dynamic_cast<CD3D11VertexBuffer&>(*InVertexBuffer);
-		 D3DDevice->m_deviceContext->IASetVertexBuffers(0, 0, xx->GetBuffer(), 0, 0);
+		 const u32 offset = 0;
+		 const u32 inVertexStructSize = 28;
+		 D3DDevice->m_deviceContext->IASetVertexBuffers(0, 1, xx->GetBuffer(), &inVertexStructSize, &offset);
 
 		GPU_RENDER_STAT(SetVertexBuffer);
 	};
@@ -96,11 +96,15 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 {
 	auto Command = [=]()
 	{
-		/* TODO: Get the window handle and set the vertex buffer. */
 		CD3D11VertexDeclaration* xx = &static_cast<CD3D11VertexDeclaration&>(*InVertexDeclaration);
+
+		// TODO: Creating InputLayout only for Test purpose here
+		ID3D11InputLayout* inputLayout;
+		D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc()->GetData(), 2, m_RenderTargetWindow->vsData.data(), m_RenderTargetWindow->vsData.size(), &inputLayout);
+		D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
+
+		inputLayout->Release();
 		
-	//	D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc().GetData(), 2, vsData.data(), vsData.size(), &inputLayout);
-	//	D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
 		GPU_RENDER_STAT(SetVertexDeclaration);
 	};
 
@@ -111,11 +115,11 @@ void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &
 {
 	auto Command = [=]()
 	{
-		/* Get the current RenderTargetWindow, D3DDevice->m_deviceContext->Draw(3, 0);*/
-	//	D3DDevice->m_deviceContext->Draw(3, 0);
+		D3DDevice->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		D3DDevice->m_deviceContext->Draw(InNumVertices, 0);
 		GPU_RENDER_STAT(DrawPrimitive);
 	};
-
+	
 	InCommandBuffer->AddCommand(Command);
 }
 

@@ -70,8 +70,7 @@ void CEditorApplication::Initialize()
 	};
 
 	FVertexDeclarationPosition VertexDeclarationPosition;
-
-
+	
 	/* Setting up a child window */
 	TSharedPtr<CRenderTargetWindow> MainWindow = CWindowManager::Instance().GetMainWindow();
 	
