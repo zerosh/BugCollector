@@ -177,6 +177,7 @@
     <ClInclude Include="Core\Types.h" />
     <ClInclude Include="Editor\CEditorApplication.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11Device.h" />
+    <ClInclude Include="Modules\DirectXAPI\CD3D11IndexBuffer.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11RenderContext.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11RenderTargetWindow.h" />
     <ClInclude Include="Modules\DirectXAPI\CD3D11VertexBuffer.h" />

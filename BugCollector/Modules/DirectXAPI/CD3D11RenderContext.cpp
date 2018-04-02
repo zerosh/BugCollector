@@ -36,8 +36,11 @@ TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexB
 
 TSharedPtr<CIndexBuffer> CD3D11RenderContext::CreateIndexBuffer(const TArray<u32> &InIndicies)
 {
+	check(InIndicies.Num() > 0)
+
 	GPU_RENDER_STAT(CreateIndexBuffer);
-	return TSharedPtr<CIndexBuffer>(new CIndexBuffer());
+	return TSharedPtr<CIndexBuffer>(new CD3D11IndexBuffer(*D3DDevice->m_nativeD3DDevice, InIndicies));
+		
 }
 
 TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
@@ -131,7 +134,11 @@ void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &
 void CD3D11RenderContext::SetIndexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CIndexBuffer> &InIndexBuffer)
 {
 	auto Command = [=]()
-	{
+	{		
+		CD3D11IndexBuffer* xx = &static_cast<CD3D11IndexBuffer&>(*InIndexBuffer);
+		// (montify): We Should provide here the DXGI_FORMAT?!
+		D3DDevice->m_deviceContext->IASetIndexBuffer(*xx->GetBuffer(), DXGI_FORMAT_R32_UINT, 0);
+
 		GPU_RENDER_STAT(SetIndexBuffer);
 	};
 
@@ -142,6 +149,11 @@ void CD3D11RenderContext::DrawIndexedPrimitives(const TSharedPtr<CRenderCommandB
 {
 	auto Command = [=]()
 	{
+		check_slow(InIndexCount > 0 && InVertexCount > 0)
+		// (montify): We Should provide here the PrimitiveTopology?!
+		D3DDevice->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		D3DDevice->m_deviceContext->DrawIndexed(InIndexCount, 0, 0);
+
 		GPU_RENDER_STAT(DrawIndexedPrimitives);
 	};
 

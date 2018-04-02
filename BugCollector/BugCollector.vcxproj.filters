@@ -176,6 +176,9 @@
     <ClInclude Include="Core\RenderingAPI\CIndexBuffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Modules\DirectXAPI\CD3D11IndexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Editor\Resource\basicPS.cso" />
