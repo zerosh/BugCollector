@@ -21,6 +21,8 @@ public:
 	virtual void Initialize() override;
 	virtual void Present(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, TSharedPtr<CRenderTargetWindow> InRenderTarget) override;
 	virtual TSharedPtr<CVertexBuffer> CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo) override;
+	virtual TSharedPtr<CIndexBuffer> CreateIndexBuffer(const TArray<u32> &InIndicies) override;
+
 	virtual TSharedPtr<CVertexDeclaration> CreateVertexDeclaration(const TArray<FVertexElement> &InElements) override;
 
 	virtual TSharedPtr<CRenderCommandBuffer> CreateCommandBuffer() override;
@@ -37,5 +39,11 @@ public:
 
 
 	virtual void DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const u32 InNumVertices) override;
+
+
+	virtual void SetIndexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CIndexBuffer> &InIndexBuffer) override;
+
+
+	virtual void DrawIndexedPrimitives(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, u32 InIndexCount, u32 InVertexCount) override;
 
 };

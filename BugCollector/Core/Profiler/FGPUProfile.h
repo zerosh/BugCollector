@@ -10,6 +10,9 @@ struct FGPUProfile
 	u32 NumSetVertexBuffer;
 	u32 NumSetVertexDeclarations;
 	u32 NumDrawPrimitives;
+	u32 NumSetIndexBuffers;
+	u32 NumDrawIndexedPrimitives;
+	u32 NumCreateIndexBuffers;
 
 	void AddCreateVertexBuffer()
 	{
@@ -49,5 +52,20 @@ struct FGPUProfile
 	void AddDrawPrimitive()
 	{
 		NumDrawPrimitives++;
+	}
+
+	void AddSetIndexBuffer()
+	{
+		NumSetIndexBuffers++;
+	}
+
+	void AddDrawIndexedPrimitives()
+	{
+		NumDrawIndexedPrimitives++;
+	}
+	
+	void AddCreateIndexBuffer()
+	{
+		NumCreateIndexBuffers++;
 	}
 };

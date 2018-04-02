@@ -161,6 +161,7 @@
     <ClInclude Include="Core\Profiler\CProfileManager.h" />
     <ClInclude Include="Core\Profiler\FCPUProfile.h" />
     <ClInclude Include="Core\Profiler\FGPUProfile.h" />
+    <ClInclude Include="Core\RenderingAPI\CIndexBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderCommandBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderTarget.h" />

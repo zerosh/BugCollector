@@ -4,6 +4,7 @@
 #include "CVertexBuffer.h"
 #include "CVertexDeclaration.h"
 #include "CRenderCommandBuffer.h"
+#include "CIndexBuffer.h"
 
 /*
 	Abstract render context that rendering api should implement.
@@ -19,6 +20,8 @@ public:
 
 	/* Create a vertex buffer. */
 	virtual TSharedPtr<CVertexBuffer> CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo) = 0;
+
+	virtual TSharedPtr<CIndexBuffer> CreateIndexBuffer(const TArray<u32> &InIndicies) = 0;
 
 	/* Create vertex declaration */
 	virtual TSharedPtr<CVertexDeclaration> CreateVertexDeclaration(const TArray<FVertexElement> &InElements) = 0;
@@ -42,9 +45,14 @@ public:
 	/* Set the current vertex buffer */
 	virtual void SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexBuffer> &InVertexBuffer) = 0;
 
+	virtual void SetIndexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CIndexBuffer> &InIndexBuffer) = 0;
+
 	/* Set the current vertex declaration s*/
 	virtual void SetVertexDeclaration(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CVertexDeclaration> &InVertexDeclaration) = 0;
 
 	/* Draw vertices  */
 	virtual void DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const u32 InNumVertices) = 0;
+
+	/* Draw indexed indicies */
+	virtual void DrawIndexedPrimitives(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, u32 InIndexCount, u32 InVertexCount) = 0;
 };

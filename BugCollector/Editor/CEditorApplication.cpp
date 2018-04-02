@@ -41,6 +41,11 @@ void CEditorApplication::Initialize()
 	VertexData.Add(v2);
 	VertexData.Add(v3);
 
+	TArray<u32> Indicies;
+	Indicies.Add(0);
+	Indicies.Add(1);
+	Indicies.Add(2);
+
 	FVertexBufferCreateInfo createInfo;
 	createInfo.BufferUsage = Static;
 	createInfo.NumVertices = VertexData.Num();
@@ -48,6 +53,8 @@ void CEditorApplication::Initialize()
 
 	auto VertexBufferhandle = CVertexBuffer::Create(createInfo);
 	VertexBufferhandle->Write(VertexData.GetData(), VertexData.Num() * sizeof(Vertex));
+
+	auto IndexBuffer = gRenderContext()->CreateIndexBuffer(Indicies);
 
 	/*
 	Test declaration of the vertex input element
@@ -80,7 +87,9 @@ void CEditorApplication::Initialize()
 	gRenderContext()->ClearRenderTarget(CommandBuffer, CColor(0, 1, 0, 1), 0);
 	gRenderContext()->SetVertexDeclaration(CommandBuffer, VertexDeclarationPosition.Declaration);
 	gRenderContext()->SetVertexBuffer(CommandBuffer, VertexBufferhandle);
-	gRenderContext()->DrawPrimitive(CommandBuffer, VertexData.Num());
+	gRenderContext()->SetIndexBuffer(CommandBuffer, IndexBuffer);
+	//gRenderContext()->DrawPrimitive(CommandBuffer, VertexData.Num());
+	gRenderContext()->DrawIndexedPrimitives(CommandBuffer, 3, 3);
 	gRenderContext()->Present(CommandBuffer, MainWindow);
 	MainWindow->SetCommandBuffer(CommandBuffer);
 

@@ -31,8 +31,13 @@ void CD3D11RenderContext::Present(TSharedPtr<CRenderCommandBuffer> InCommandBuff
 TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo)
 {
 	GPU_RENDER_STAT(CreateVertexBuffer);
-
 	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, *D3DDevice->m_deviceContext, InVertexBufferCreateInfo));
+}
+
+TSharedPtr<CIndexBuffer> CD3D11RenderContext::CreateIndexBuffer(const TArray<u32> &InIndicies)
+{
+	GPU_RENDER_STAT(CreateIndexBuffer);
+	return TSharedPtr<CIndexBuffer>(new CIndexBuffer());
 }
 
 TSharedPtr<CVertexDeclaration> CD3D11RenderContext::CreateVertexDeclaration(const TArray<FVertexElement> &InElements)
@@ -120,6 +125,26 @@ void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &
 		GPU_RENDER_STAT(DrawPrimitive);
 	};
 	
+	InCommandBuffer->AddCommand(Command);
+}
+
+void CD3D11RenderContext::SetIndexBuffer(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, const TSharedPtr<CIndexBuffer> &InIndexBuffer)
+{
+	auto Command = [=]()
+	{
+		GPU_RENDER_STAT(SetIndexBuffer);
+	};
+
+	InCommandBuffer->AddCommand(Command);
+}
+
+void CD3D11RenderContext::DrawIndexedPrimitives(const TSharedPtr<CRenderCommandBuffer> &InCommandBuffer, u32 InIndexCount, u32 InVertexCount)
+{
+	auto Command = [=]()
+	{
+		GPU_RENDER_STAT(DrawIndexedPrimitives);
+	};
+
 	InCommandBuffer->AddCommand(Command);
 }
 

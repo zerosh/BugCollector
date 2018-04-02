@@ -49,6 +49,8 @@ void CApplication::Run()
 		
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
+
+		CProfileManager::Instance().Reset();
 	}
 	
 }
