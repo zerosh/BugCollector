@@ -2,6 +2,7 @@
 
 LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wParam, LPARAM lParam)
 {
+	static bool wasMaximized = false; 
 	switch (uMsg)
 	{
 	case WM_PAINT:
@@ -10,6 +11,12 @@ LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wPa
 	case WM_CLOSE:
 		//DestroyWindow(hwnd);
 		PostQuitMessage(0);
+		break;
+	case WM_EXITSIZEMOVE:
+		RECT rect;
+		GetClientRect(hwnd, &rect);
+		CWindowsPlatformWindow::ResizeInfo.newWidth = rect.right;
+		CWindowsPlatformWindow::ResizeInfo.newHeight = rect.bottom;
 		break;
 	 default:
 		 break;
@@ -20,12 +27,14 @@ LRESULT CALLBACK CWindowsPlatformWindow::WndProc(HWND hwnd, u32 uMsg, WPARAM wPa
 
 CWindowsPlatformWindow::CWindowsPlatformWindow()
 {
+	
+	
 }
 
 void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatformWindowCreateInfo)
 {
 	HINSTANCE WindowInstance = (HINSTANCE)InPlatformWindowCreateInfo.ParentWindowHandle;
-
+	
 	WNDCLASSEX wnd = {};
 	wnd.cbSize = sizeof(WNDCLASSEX);
 	wnd.hInstance = WindowInstance;
@@ -35,6 +44,8 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 	wnd.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
 	wnd.hCursor = LoadCursor(NULL, IDC_ARROW);
 
+	CWindowsPlatformWindow::ResizeInfo.newWidth = InPlatformWindowCreateInfo.Width;
+	CWindowsPlatformWindow::ResizeInfo.newHeight = InPlatformWindowCreateInfo.Height;
 	if (!RegisterClassEx(&wnd))
 	{
 		throw;

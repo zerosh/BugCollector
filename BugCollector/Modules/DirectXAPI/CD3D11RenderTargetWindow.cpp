@@ -145,6 +145,15 @@ void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWin
 void CD3D11RenderTargetWindow::DispatchWindowsMessage()
 {
 	PlatformWindow.PeekMessageLoop();
+	
+	DXGI_SWAP_CHAIN_DESC1 sd;
+	m_SwapChain->GetDesc1(&sd);
+	
+	if (sd.Width != PlatformWindow.ResizeInfo.newWidth)
+	{
+		Resize(PlatformWindow.ResizeInfo.newWidth, PlatformWindow.ResizeInfo.newHeight);
+	}
+		
 }
 
 void CD3D11RenderTargetWindow::SetFullscreen()
@@ -169,34 +178,33 @@ void CD3D11RenderTargetWindow::SetVerticalSync(b8 InState)
 
 void CD3D11RenderTargetWindow::Resize(u32 InW, u32 InH)
 {
-	/*// Release all reference to the SwapChain
-	D3DDevice->m_deviceContext->OMSetRenderTargets(0, 0, 0);
-	D3DDevice->m_renderTargetView->Release();
+	D3DDevice->m_deviceContext->OMSetRenderTargets(0, nullptr, nullptr);
 
+	SAFE_RELEASE(m_RederTargetView);
+	SAFE_RELEASE(m_BackBuffer);
+	
 	HRESULT hr;
-
-	if (FAILED(hr = D3DDevice->m_swapChain[0]->ResizeBuffers(0, InW, InH, DXGI_FORMAT_UNKNOWN, 0)))
+	if (FAILED(hr = m_SwapChain->ResizeBuffers(0, InW, InH, DXGI_FORMAT_UNKNOWN, 0)))
 	{
 		__debugbreak();
 	}
 
 
 	ID3D11Texture2D* pBuffer;
-	if (FAILED(hr = D3DDevice->m_swapChain[0]->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer)))
+	if (FAILED(hr = m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&pBuffer)))
 	{
 		__debugbreak();
 	}
 
 
-	if (FAILED(hr = D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(pBuffer, nullptr, &D3DDevice->m_renderTargetView)))
+	if (FAILED(hr = D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(pBuffer, nullptr, &m_RederTargetView)))
 	{
 		__debugbreak();
 	}
 
-	pBuffer->Release();
+	SAFE_RELEASE(pBuffer);
 
-	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &D3DDevice->m_renderTargetView, nullptr);
-
+	D3DDevice->m_deviceContext->OMSetRenderTargets(1, &m_RederTargetView, nullptr);
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
@@ -208,7 +216,6 @@ void CD3D11RenderTargetWindow::Resize(u32 InW, u32 InH)
 	vp.TopLeftY = 0;
 
 	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
-	*/
 }
 
 void CD3D11RenderTargetWindow::Move(u32 InX, u32 InY)
@@ -244,6 +251,6 @@ void CD3D11RenderTargetWindow::SwapFrameBuffer()
 void CD3D11RenderTargetWindow::Present()
 {
 	SetRenderTargetView();
-
+	
 	m_SwapChain->Present(1, 0);
 }

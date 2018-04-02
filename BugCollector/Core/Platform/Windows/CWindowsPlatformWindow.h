@@ -29,25 +29,29 @@ struct FPlatformWindowCreateInfo
 	void *ParentWindowHandle;
 };
 
+struct FPLatformResizeInfo
+{
+	u32 newWidth;
+	u32 newHeight;
+};
+
 class CWindowsPlatformWindow
 {
 private:
 	HWND WindowHandle;
-
+	
 	static LRESULT CALLBACK WndProc(HWND hwnd, u32 uMsg, WPARAM wParam, LPARAM lParam);
 public:
 	CWindowsPlatformWindow();
-	
+
+	/* When Windows is resized, holds the new Witdth, Height*/
+	static inline FPLatformResizeInfo ResizeInfo;
 	/* Create the platform window. */
 	void Initialize(const FPlatformWindowCreateInfo &InPlatformWindowCreateInfo);
-
 	/* Get the window handle for this platform window */
 	HWND GetHandle() const;
-
-
 	void PeekMessageLoop();
 
-	
 };
 
 /* Handle for platform window. */
