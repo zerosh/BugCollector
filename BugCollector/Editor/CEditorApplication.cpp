@@ -26,23 +26,35 @@ void CEditorApplication::Initialize()
 	TArray<Vertex> VertexData;
 
 	Vertex v1;
-	v1.Position = Vector3f(0.0f, 0.5f, 0.5f);
+	v1.Position = Vector3f(-0.5f, -0.5f, 0.0f);
 	v1.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
 
 	Vertex v2;
-	v2.Position = Vector3f(0.5f, -0.5f, 0.5f);
+	v2.Position = Vector3f(-0.5f, 0.5f, 0.0f);
 	v2.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
 
 	Vertex v3;
-	v3.Position = Vector3f(-0.5f, -0.5f, 0.5f);
+	v3.Position = Vector3f(0.5f, 0.5f, 0.0f);
 	v3.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
+
+	Vertex v4;
+	v4.Position = Vector3f(0.5f, -0.5f, 0.0f);
+	v4.Color = Vector4f(1.0f, 0.0f, 0.0f, 1.0f);
+
+	
 
 	VertexData.Add(v1);
 	VertexData.Add(v2);
 	VertexData.Add(v3);
+	VertexData.Add(v4);
 
 	TArray<u32> Indicies;
+
 	Indicies.Add(0);
+	Indicies.Add(1);
+	Indicies.Add(3);
+
+	Indicies.Add(3);
 	Indicies.Add(1);
 	Indicies.Add(2);
 
@@ -89,7 +101,7 @@ void CEditorApplication::Initialize()
 	gRenderContext()->SetVertexBuffer(CommandBuffer, VertexBufferhandle);
 	gRenderContext()->SetIndexBuffer(CommandBuffer, IndexBuffer);
 	//gRenderContext()->DrawPrimitive(CommandBuffer, VertexData.Num());
-	gRenderContext()->DrawIndexedPrimitives(CommandBuffer, 3, 3);
+	gRenderContext()->DrawIndexedPrimitives(CommandBuffer, 6, 4);
 	gRenderContext()->Present(CommandBuffer, MainWindow);
 	MainWindow->SetCommandBuffer(CommandBuffer);
 
