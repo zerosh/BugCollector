@@ -46,7 +46,7 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	}
 	
 	 PlatformWindow.Initialize(createInfo);
-
+	
 	 CreateSwapChain(PlatformWindow.GetHandle(), createInfo.Width, createInfo.Height);
 	 CreateRenderTargetView();
 	 CreateAndSetViewPort(createInfo.Width, createInfo.Height);
@@ -220,7 +220,7 @@ void CD3D11RenderTargetWindow::Move(u32 InX, u32 InY)
 
 void CD3D11RenderTargetWindow::Show()
 {
-
+	
 }
 
 void CD3D11RenderTargetWindow::Hide()
@@ -245,5 +245,8 @@ void CD3D11RenderTargetWindow::SwapFrameBuffer()
 
 void CD3D11RenderTargetWindow::Present()
 {
+	if (!PlatformWindow.bIsRunning)
+		bIsRunning = false;
+
 	m_SwapChain->Present(1, 0);
 }

@@ -41,9 +41,10 @@ private:
 	HWND WindowHandle;
 	
 	static LRESULT CALLBACK WndProc(HWND hwnd, u32 uMsg, WPARAM wParam, LPARAM lParam);
+	LRESULT CALLBACK MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 public:
 	CWindowsPlatformWindow();
-
+	b8 bIsRunning = true;
 	/* When Windows is resized, holds the new Witdth, Height*/
 	static inline FPLatformResizeInfo ResizeInfo;
 	/* Create the platform window. */
@@ -53,6 +54,6 @@ public:
 	void PeekMessageLoop();
 
 };
-
+static CWindowsPlatformWindow* ApplicationHandle = 0;
 /* Handle for platform window. */
 typedef CWindowsPlatformWindow CPlatformWindow;
