@@ -29,7 +29,7 @@ void CD3D11RenderTargetWindow::SetUpTempTestData()
 CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InParentWindow)
 {
 	D3DDevice = InD3DDevice;
-	
+	bIsRunning = true;
 	// Temp setup to get started.
 	FPlatformWindowCreateInfo createInfo;
 	createInfo.bCreateDebugWindow = false;
@@ -38,11 +38,12 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 	createInfo.Width = 1024;
 	createInfo.Height = 768;
 	
-	CD3D11RenderTargetWindow *ParentWindow = static_cast<CD3D11RenderTargetWindow*>(InParentWindow.get());
+	ParentWindow = dynamic_cast<CD3D11RenderTargetWindow*>(InParentWindow.get());
 
 	if (ParentWindow)
 	{
 		createInfo.ParentWindowHandle = ParentWindow;
+		
 	}
 	
 	 PlatformWindow.Initialize(createInfo);
@@ -62,8 +63,9 @@ CD3D11RenderTargetWindow::~CD3D11RenderTargetWindow()
 void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
 {
 	check(handle)
-	check(InWindowWidth > 0 && InWindowHeight > 0) 
+		check(InWindowWidth > 0 && InWindowHeight > 0)
 
+		
 	DXGI_SWAP_CHAIN_DESC1 sd;
 	ZeroMemory(&sd, sizeof(sd));
 
@@ -246,7 +248,10 @@ void CD3D11RenderTargetWindow::SwapFrameBuffer()
 void CD3D11RenderTargetWindow::Present()
 {
 	if (!PlatformWindow.bIsRunning)
-		bIsRunning = false;
+		if (ParentWindow)
+			ParentWindow->bIsRunning = false;
+		else
+			bIsRunning = false;
 
 	m_SwapChain->Present(1, 0);
 }

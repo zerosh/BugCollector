@@ -21,7 +21,7 @@ public:
 	{
 		return CommandBuffer;
 	}
-	b8 bIsRunning = true;
+	
 	/* Set fullscreen window. */
 	virtual void SetFullscreen();
 

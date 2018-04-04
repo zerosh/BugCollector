@@ -16,6 +16,7 @@ private:
 	ID3D11RenderTargetView* m_RederTargetView = nullptr;
 	ID3D11Texture2D* m_BackBuffer = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
+	CD3D11RenderTargetWindow *ParentWindow = nullptr;
 public:
 	// TESTDATA
 	ID3D11VertexShader* vertexShader = nullptr;

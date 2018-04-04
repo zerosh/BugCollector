@@ -48,7 +48,7 @@ void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatf
 	HINSTANCE WindowInstance = (HINSTANCE)InPlatformWindowCreateInfo.ParentWindowHandle;
 
 	ApplicationHandle = this;
-
+	bIsRunning = true;
 	WNDCLASSEX wnd = {};
 	wnd.cbSize = sizeof(WNDCLASSEX);
 	wnd.hInstance = WindowInstance;

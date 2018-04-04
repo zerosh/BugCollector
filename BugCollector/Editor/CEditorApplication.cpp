@@ -95,9 +95,9 @@ void CEditorApplication::Initialize()
 	TSharedPtr<CRenderTargetWindow> MainWindow = CWindowManager::Instance().GetMainWindow();
 
 	/* Second window setup. */
-/*	auto second = gRenderContext()->CreateRenderTargetWindow(MainWindow);
+	auto second = gRenderContext()->CreateRenderTargetWindow(MainWindow);
 	CWindowManager::Instance().AddWindow(second);
-	*/
+	
 	/* Render command */
 	TSharedPtr<CRenderCommandBuffer> CommandBuffer = gRenderContext()->CreateCommandBuffer();
 	gRenderContext()->SetRenderTarget(CommandBuffer, MainWindow);
@@ -111,7 +111,7 @@ void CEditorApplication::Initialize()
 	gRenderContext()->Present(CommandBuffer, MainWindow);
 	
 
-	/*TSharedPtr<CRenderCommandBuffer> CommandBuffer11 = gRenderContext()->CreateCommandBuffer();
+	TSharedPtr<CRenderCommandBuffer> CommandBuffer11 = gRenderContext()->CreateCommandBuffer();
 	gRenderContext()->SetRenderTarget(CommandBuffer11, second);
 	gRenderContext()->ClearRenderTarget(CommandBuffer11, CColor(1, 1, 0, 1), 0);
 	gRenderContext()->SetVertexDeclaration(CommandBuffer11, VertexDeclarationPosition.Declaration);
@@ -120,6 +120,6 @@ void CEditorApplication::Initialize()
 	//gRenderContext()->DrawPrimitive(CommandBuffer, VertexData.Num());
 	gRenderContext()->DrawIndexedPrimitives(CommandBuffer11, 6, 4);
 	second->SetCommandBuffer(CommandBuffer11);
-	gRenderContext()->Present(CommandBuffer11, second);*/
+	gRenderContext()->Present(CommandBuffer11, second);
 
 }

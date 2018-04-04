@@ -52,8 +52,12 @@ void CApplication::Run()
 		
 		CProfileManager::Instance().Reset();
 
-		if (!CWindowManager::Instance().GetMainWindow()->bIsRunning)
-			bIsRunning = false;
+
+		if (!CWindowManager::Instance().GetMainWindow()->IsRunning())
+		{
+			Quit();
+		}
+		
 	}
 	
 }

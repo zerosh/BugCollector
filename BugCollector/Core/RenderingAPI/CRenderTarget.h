@@ -16,13 +16,14 @@ protected:
 	/* Number of multisamples that this render target should use. */
 	u8 NumMultisamples;
 
+	b8 bIsRunning;
 	///* Width of the render target */
 	//u32 Width;
 
 	///* Heigth of the render target */
 	//u32 Heigth;
 public:
-
+	b8 IsRunning() const { return bIsRunning; };
 	/* Enable or disable vertical sync for this render target */
 	void SetVerticalSync(b8 InUseVerticalSync);
 
@@ -31,7 +32,7 @@ public:
 
 	/* Set the number of multisamples that this render target should use. */
 	void SetNumMultisamples(const u32 InNumMultisamples);
-
+	
 	/* Present the render target */
 	virtual void Present() = 0;
 };

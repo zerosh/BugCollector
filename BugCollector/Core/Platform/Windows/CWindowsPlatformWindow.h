@@ -44,7 +44,7 @@ private:
 	LRESULT CALLBACK MessageHandler(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 public:
 	CWindowsPlatformWindow();
-	b8 bIsRunning = true;
+	b8 bIsRunning;
 	/* When Windows is resized, holds the new Witdth, Height*/
 	static inline FPLatformResizeInfo ResizeInfo;
 	/* Create the platform window. */

@@ -6,6 +6,5 @@ int main()
 	CEditorApplication editorApplication;
 	CBootstrap::Run(&editorApplication);
 
-	printf("LOL");
 	return 0;
 }
