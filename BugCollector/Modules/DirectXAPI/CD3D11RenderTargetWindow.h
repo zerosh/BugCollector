@@ -9,38 +9,30 @@
 
 class CD3D11RenderTargetWindow : public CRenderTargetWindow
 {
-	private:
+private:
 	CPlatformWindow PlatformWindow;
 	TSharedPtr<CD3D11Device> D3DDevice;
-
 	IDXGISwapChain1* m_SwapChain = nullptr;
 	ID3D11RenderTargetView* m_RederTargetView = nullptr;
 	ID3D11Texture2D* m_BackBuffer = nullptr;
 	ID3D11Texture2D* m_depthStencilBuffer = nullptr;
-
 public:
 	// TESTDATA
-	CD3D11VertexBuffer* vBuffer;
 	ID3D11VertexShader* vertexShader = nullptr;
 	ID3D11PixelShader* pixelShader = nullptr;
-	ID3D11InputLayout* inputLayout = nullptr;
 	TArray<char> vsData;
-	
 	//------------
 public:
-	void SetUpTempTestData();
 	CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3DDevice, TSharedPtr<CRenderTargetWindow> InChildWindow);
 	~CD3D11RenderTargetWindow();
-	ID3D11RenderTargetView* GetRenderTargetView() const { return m_RederTargetView; };
+	ID3D11RenderTargetView*  GetRenderTargetView()  const { return m_RederTargetView; };
 
 private:
-	void CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight);
-	
+	void CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight);	
 	void CreateRenderTargetView();
 	void SetRenderTargetView();
-	
 	void CreateAndSetViewPort(u32 InWindowWidth, u32 InWindowHeight);
-
+	void SetUpTempTestData();
 public:
 
 	virtual void DispatchWindowsMessage() override;

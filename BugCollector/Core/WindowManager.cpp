@@ -20,7 +20,7 @@ void CWindowManager::Render()
 {
 	/* Render the main window. */
 	MainWindow->GetCommandBuffer()->Execute();
-
+	
 	/* Render all the child windows. */
 	for (u32 i = 0; i < Windows.Num(); i++)
 	{

@@ -22,7 +22,6 @@ void CApplication::Initialize()
 	CRenderManager::StartModule();
 	CWindowManager::StartModule();
 	CProfileManager::StartModule();
-
 	
 	/* Setting up the default application window. */
 	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CD3D11RenderContext()));
@@ -30,6 +29,7 @@ void CApplication::Initialize()
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 	mainWindow->SetVerticalSync(true);
 	CWindowManager::Instance().SetMainWindow(mainWindow);
+
 }
 
 

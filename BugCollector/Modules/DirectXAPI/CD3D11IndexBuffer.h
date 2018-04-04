@@ -10,7 +10,7 @@ private:
 	ID3D11Device& m_D3DDevice;
 	const TArray<u32>& m_Indicies;
 public:
-	ID3D11Buffer * const* GetBuffer() { return &indexBuffer; };
+	ID3D11Buffer * const* GetBuffer() const { return &indexBuffer; };
 
 public:
 	CD3D11IndexBuffer(ID3D11Device& inD3DDevice, const TArray<u32> &InIndicies)

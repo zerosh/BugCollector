@@ -12,13 +12,13 @@ private:
 
 //TESTDATA
 public:
-	ID3D11Buffer * const* GetBuffer() { return &vertexBuffer; };
+	ID3D11Buffer * const* GetBuffer() const { return &vertexBuffer; };
 
 public:
-
 	CD3D11VertexBuffer(ID3D11Device& inD3DDevice, ID3D11DeviceContext& inD3DDeviceContext, const FVertexBufferCreateInfo& InVertexBufferCreateInfo)
 		:m_D3DDevice(inD3DDevice), m_D3DDeviceContext(inD3DDeviceContext)
 	{
+		vertexBuffer = nullptr;
 		CreateBuffer(InVertexBufferCreateInfo);	
 	}
 
@@ -48,7 +48,7 @@ private:
 		vertexBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		vertexBufferDesc.MiscFlags = 0;
 	
-		m_D3DDevice.CreateBuffer(&vertexBufferDesc, 0, &vertexBuffer);		
+		m_D3DDevice.CreateBuffer(&vertexBufferDesc, nullptr, &vertexBuffer);		
 	}
 
 

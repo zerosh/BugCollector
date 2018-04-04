@@ -56,7 +56,7 @@ CD3D11RenderTargetWindow::CD3D11RenderTargetWindow(TSharedPtr<CD3D11Device> InD3
 
 CD3D11RenderTargetWindow::~CD3D11RenderTargetWindow()
 {
-	delete vBuffer;
+	
 }
 
 void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u32 InWindowHeight)
@@ -80,7 +80,6 @@ void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u
 
 
 	// Grab the DXGI Factory
-
 	IDXGIDevice* dxgiDevice = nullptr;
 	HRESULT hr;
 
@@ -106,7 +105,6 @@ void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u
 		__debugbreak();
 	}
 
-	
 	dxgiDevice->Release();
 	dxgiAdapter->Release();
 	dxgiFactory->Release();
@@ -114,7 +112,6 @@ void CD3D11RenderTargetWindow::CreateSwapChain(HWND handle, u32 InWindowWidth, u
 
 void CD3D11RenderTargetWindow::CreateRenderTargetView()
 {
-	
 	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&m_BackBuffer);
 
 	if (FAILED(D3DDevice->m_nativeD3DDevice->CreateRenderTargetView(m_BackBuffer, nullptr, &m_RederTargetView)))
@@ -139,7 +136,6 @@ void CD3D11RenderTargetWindow::CreateAndSetViewPort(u32 InWindowWidth, u32 InWin
 	vp.TopLeftY = 0;
 
 	D3DDevice->m_deviceContext->RSSetViewports(1, &vp);
-
 }
 
 void CD3D11RenderTargetWindow::DispatchWindowsMessage()
@@ -152,8 +148,7 @@ void CD3D11RenderTargetWindow::DispatchWindowsMessage()
 	if (sd.Width != PlatformWindow.ResizeInfo.newWidth)
 	{
 		Resize(PlatformWindow.ResizeInfo.newWidth, PlatformWindow.ResizeInfo.newHeight);
-	}
-		
+	}		
 }
 
 void CD3D11RenderTargetWindow::SetFullscreen()
@@ -208,8 +203,8 @@ void CD3D11RenderTargetWindow::Resize(u32 InW, u32 InH)
 
 	// Set up the viewport.
 	D3D11_VIEWPORT vp;
-	vp.Width = (FLOAT)InW;
-	vp.Height = (FLOAT)InH;
+	vp.Width = static_cast<FLOAT>(InW);
+	vp.Height = static_cast<FLOAT>(InH);
 	vp.MinDepth = 0.0f;
 	vp.MaxDepth = 1.0f;
 	vp.TopLeftX = 0;
@@ -245,12 +240,10 @@ void CD3D11RenderTargetWindow::Maximize()
 
 void CD3D11RenderTargetWindow::SwapFrameBuffer()
 {
-
+	SetRenderTargetView();
 }
 
 void CD3D11RenderTargetWindow::Present()
 {
-	SetRenderTargetView();
-	
 	m_SwapChain->Present(1, 0);
 }

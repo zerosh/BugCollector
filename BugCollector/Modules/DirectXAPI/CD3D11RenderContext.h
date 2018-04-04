@@ -13,15 +13,19 @@ class CD3D11RenderContext : public IRenderContext
 private: 
 	TSharedPtr<CD3D11Device> D3DDevice;
 	CD3D11RenderTargetWindow* m_RenderTargetWindow = nullptr;
-	void CreateAndSetDevice();
+	void CreateAndSetDevice() const;
 public:
 	CD3D11RenderContext();
 	~CD3D11RenderContext();
 
 	virtual TSharedPtr<CRenderTargetWindow> CreateRenderTargetWindow(TSharedPtr<CRenderTargetWindow> InParentWindow = nullptr) override;
+
 	virtual void Initialize() override;
+
 	virtual void Present(TSharedPtr<CRenderCommandBuffer> InCommandBuffer, TSharedPtr<CRenderTargetWindow> InRenderTarget) override;
+
 	virtual TSharedPtr<CVertexBuffer> CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo) override;
+
 	virtual TSharedPtr<CIndexBuffer> CreateIndexBuffer(const TArray<u32> &InIndicies) override;
 
 	virtual TSharedPtr<CVertexDeclaration> CreateVertexDeclaration(const TArray<FVertexElement> &InElements) override;

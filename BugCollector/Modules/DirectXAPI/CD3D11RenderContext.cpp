@@ -19,8 +19,9 @@ void CD3D11RenderContext::Present(TSharedPtr<CRenderCommandBuffer> InCommandBuff
 {
 	auto command = [=]() 
 	{
-		InRenderTarget->DispatchWindowsMessage();
-		InRenderTarget->Present();
+		auto xx  = &dynamic_cast<CD3D11RenderTargetWindow&>(*InRenderTarget);
+		xx->DispatchWindowsMessage();
+		xx->Present();
 		
 		GPU_RENDER_STAT(Present);
 	};
@@ -31,6 +32,7 @@ void CD3D11RenderContext::Present(TSharedPtr<CRenderCommandBuffer> InCommandBuff
 TSharedPtr<CVertexBuffer> CD3D11RenderContext::CreateVertexBuffer(const FVertexBufferCreateInfo &InVertexBufferCreateInfo)
 {
 	GPU_RENDER_STAT(CreateVertexBuffer);
+	
 	return TSharedPtr<CVertexBuffer>(new CD3D11VertexBuffer(*D3DDevice->m_nativeD3DDevice, *D3DDevice->m_deviceContext, InVertexBufferCreateInfo));
 }
 
@@ -60,6 +62,9 @@ void CD3D11RenderContext::SetRenderTarget(const TSharedPtr<CRenderCommandBuffer>
 	{
 		m_RenderTargetWindow = &dynamic_cast<CD3D11RenderTargetWindow&>(*InRenderTarget);
 		
+		// Set the D3D11 RenderTarget to the D3D11 Device
+		m_RenderTargetWindow->SwapFrameBuffer();
+
 		GPU_RENDER_STAT(SetRenderTarget);
 	};
 
@@ -85,10 +90,6 @@ void CD3D11RenderContext::SetVertexBuffer(const TSharedPtr<CRenderCommandBuffer>
 {
 	auto Command = [=]()
 	{
-		/* TODO: Get the window handle and set the vertex buffer. */
-
-		/* @ ZROSH: Is this how things going? */
-	
 		 CD3D11VertexBuffer* xx = &dynamic_cast<CD3D11VertexBuffer&>(*InVertexBuffer);
 		 const u32 offset = 0;
 		 const u32 inVertexStructSize = 28;
@@ -106,7 +107,6 @@ void CD3D11RenderContext::SetVertexDeclaration(const TSharedPtr<CRenderCommandBu
 	{
 		CD3D11VertexDeclaration* xx = &static_cast<CD3D11VertexDeclaration&>(*InVertexDeclaration);
 
-		// TODO: Creating InputLayout only for Test purpose here
 		ID3D11InputLayout* inputLayout;
 		D3DDevice->m_nativeD3DDevice->CreateInputLayout(xx->GetVertexDesc()->GetData(), 2, m_RenderTargetWindow->vsData.GetData(), m_RenderTargetWindow->vsData.Num(), &inputLayout);
 		D3DDevice->m_deviceContext->IASetInputLayout(inputLayout);
@@ -125,6 +125,7 @@ void CD3D11RenderContext::DrawPrimitive(const TSharedPtr<CRenderCommandBuffer> &
 	{
 		D3DDevice->m_deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		D3DDevice->m_deviceContext->Draw(InNumVertices, 0);
+
 		GPU_RENDER_STAT(DrawPrimitive);
 	};
 	
@@ -160,7 +161,7 @@ void CD3D11RenderContext::DrawIndexedPrimitives(const TSharedPtr<CRenderCommandB
 	InCommandBuffer->AddCommand(Command);
 }
 
-void CD3D11RenderContext::CreateAndSetDevice()
+void CD3D11RenderContext::CreateAndSetDevice() const
 {
 	ID3D11Device* device = nullptr;
 
