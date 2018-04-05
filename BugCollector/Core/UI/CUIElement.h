@@ -36,6 +36,9 @@ public:
 	/* Remove a child from this element */
 	void RemoveChild(CUIElement *InElement);
 
+	/* Destroy this element */
+	void Destroy();
+
 	/* Get the 2D transform for this element */
 	const FTransform2D& GetTransform() const;
 
@@ -48,7 +51,7 @@ public:
 	void SetSize(u32 InWidth, u32 InHeigth);
 
 	/**
-	*	Set the location on the screen for this element 
+	*	Set the location on the screen for this element
 	*
 	*	@Parameter	InLocation		Screen pixel location
 	*/
@@ -60,8 +63,8 @@ public:
 	/* Returns true if the element is enabled */
 	b8 IsEnabled() const;
 
-	/* 
-		Set the visibility of this widget, this will not delete the element 
+	/*
+		Set the visibility of this widget, this will not delete the element
 		The element will recieve updates even if it is not visible
 	*/
 	void SetVisibility(b8 InVisible);
@@ -69,4 +72,3 @@ public:
 	/* Get if the element is visible */
 	b8 IsVisible() const;
 };
-

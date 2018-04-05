@@ -24,6 +24,14 @@ void CUIElement::RemoveChild(CUIElement *InElement)
 {
 }
 
+void CUIElement::Destroy()
+{
+	if (Parent)
+	{
+		Parent->RemoveChild(this);
+	}
+}
+
 const FTransform2D& CUIElement::GetTransform() const
 {
 	return Transform;

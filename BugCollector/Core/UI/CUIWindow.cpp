@@ -7,7 +7,9 @@ CUIWindow::CUIWindow(TSharedPtr<CRenderTargetWindow> InWindow)
 	Window = InWindow;
 
 	/* Add a panel to this window */
-	AddChild(CUIPanel::Create());
+	auto panel = CUIPanel::Create();
+
+	AddChild(panel);
 }
 
 TSharedPtr<CUIWindow> CUIWindow::Create(TSharedPtr<CRenderTargetWindow> InWindow)
