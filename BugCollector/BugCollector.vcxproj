@@ -159,12 +159,15 @@
     <ClInclude Include="Core\Math\CColor.h" />
     <ClInclude Include="Core\Math\Math.h" />
     <ClInclude Include="Core\Math\Vector.h" />
+    <ClInclude Include="Core\Mesh\CMesh.h" />
+    <ClInclude Include="Core\Mesh\CVertexData.h" />
     <ClInclude Include="Core\Platform\Platform.h" />
     <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h" />
     <ClInclude Include="Core\Pointer.h" />
     <ClInclude Include="Core\Profiler\CProfileManager.h" />
     <ClInclude Include="Core\Profiler\FCPUProfile.h" />
     <ClInclude Include="Core\Profiler\FGPUProfile.h" />
+    <ClInclude Include="Core\RenderCore\IRenderer.h" />
     <ClInclude Include="Core\RenderingAPI\CIndexBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderCommandBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CRenderManager.h" />
@@ -175,8 +178,11 @@
     <ClInclude Include="Core\RenderingAPI\Material\CMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\Material\IMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\RenderingAPI.h" />
+    <ClInclude Include="Core\Scene\CCamera.h" />
     <ClInclude Include="Core\UI\CUIElement.h" />
+    <ClInclude Include="Core\UI\CUIManager.h" />
     <ClInclude Include="Core\UI\CUIPanel.h" />
+    <ClInclude Include="Core\UI\CUIRenderer.h" />
     <ClInclude Include="Core\UI\CUIWindow.h" />
     <ClInclude Include="Core\UI\FTransform2D.h" />
     <ClInclude Include="Core\UI\UI.h" />
@@ -195,13 +201,18 @@
   <ItemGroup>
     <ClCompile Include="Core\Application.cpp" />
     <ClCompile Include="Core\Math\CColor.cpp" />
+    <ClCompile Include="Core\Mesh\CMesh.cpp" />
+    <ClCompile Include="Core\Mesh\CVertexData.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderCommandBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />
+    <ClCompile Include="Core\Scene\CCamera.cpp" />
     <ClCompile Include="Core\UI\CUIElement.cpp" />
+    <ClCompile Include="Core\UI\CUIManager.cpp" />
     <ClCompile Include="Core\UI\CUIPanel.cpp" />
+    <ClCompile Include="Core\UI\CUIRenderer.cpp" />
     <ClCompile Include="Core\UI\CUIWindow.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />

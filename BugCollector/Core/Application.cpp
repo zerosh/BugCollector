@@ -3,6 +3,7 @@
 #include "Profiler/CProfileManager.h"
 #include "../Modules/DirectXAPI/CD3D11RenderContext.h"
 #include "RenderingAPI/CRenderCommandBuffer.h"
+#include "UI/CUIManager.h"
 
 CApplication::CApplication()
 {
@@ -22,14 +23,14 @@ void CApplication::Initialize()
 	CRenderManager::StartModule();
 	CWindowManager::StartModule();
 	CProfileManager::StartModule();
-	
+	CUIManager::StartModule();
+
 	/* Setting up the default application window. */
 	CRenderManager::Instance().SetRenderContext(TSharedPtr<IRenderContext>(new CD3D11RenderContext()));
-	
+
 	auto mainWindow = CRenderManager::Instance().GetRenderContext()->CreateRenderTargetWindow();
 	mainWindow->SetVerticalSync(true);
 	CWindowManager::Instance().SetMainWindow(mainWindow);
-
 }
 
 
@@ -47,11 +48,12 @@ void CApplication::Run()
 		PreUpdate();
 		PostUpdate();
 		
+		CUIManager::Instance().Update();
+
 		/* Rendering all the windows. */
 		CWindowManager::Instance().Render();
 		
 		CProfileManager::Instance().Reset();
-
 
 		if (!CWindowManager::Instance().GetMainWindow()->IsRunning())
 		{
