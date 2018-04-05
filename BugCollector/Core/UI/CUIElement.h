@@ -3,19 +3,11 @@
 
 struct FTransform2D
 {
+	/* Location on the screen in pixels */
 	Vector2i Location;
 
-	/* Set the location on the screen */
-	void SetLocation(const Vector2i &InLocation)
-	{
-		Location = InLocation;
-	}
-
-	/* Get the location on the screen */
-	const Vector2i& GetLocation() const
-	{
-		return Location;
-	}
+	/* The min and max extents for the area */
+	Box2Di Area;
 };
 
 /*
@@ -24,17 +16,37 @@ struct FTransform2D
 class CUIElement
 {
 private:
-	FTransform2D Transform;
+	/* true if the element is visible */
 	b8 bIsVisible : 1;
+
+	/* true if the element will recieve any input updates */
 	b8 bIsEnabled : 1;
+
+	/* Contains the position, and size of the element */
+	FTransform2D Transform;
+
 public:
 	CUIElement()
 		: bIsVisible(true)
 		, bIsEnabled(true)
 	{}
 
-	/* Get the transform for this element */
-	FTransform2D & GetTransform();
+	const FTransform2D& GetTransform() const;
+
+	/**
+	*	Set the size of the element
+	*
+	*	@Parameter	InWidth		Screen pixels size
+	*	@Parameter	InHeigth	Screen pixels size
+	*/
+	void SetSize(u32 InWidth, u32 InHeigth);
+
+	/**
+	*	Set the location on the screen for this element 
+	*
+	*	@Parameter	InLocation		Screen pixel location
+	*/
+	void SetLocation(const Vector2i &InLocation);
 
 	/* If true this element wont recieve any updates */
 	void SetEnabled(b8 InEnabled);

@@ -155,7 +155,9 @@
     <ClInclude Include="Core\CString.h" />
     <ClInclude Include="Core\Debugging\Debug.h" />
     <ClInclude Include="Core\Delegate.h" />
+    <ClInclude Include="Core\Math\Box2D.h" />
     <ClInclude Include="Core\Math\CColor.h" />
+    <ClInclude Include="Core\Math\Math.h" />
     <ClInclude Include="Core\Math\Vector.h" />
     <ClInclude Include="Core\Platform\Platform.h" />
     <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h" />
@@ -198,6 +200,7 @@
     <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />
     <ClCompile Include="Core\UI\CUIElement.cpp" />
+    <ClCompile Include="Core\UI\CUIPanel.cpp" />
     <ClCompile Include="Core\UI\CUIWindow.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />

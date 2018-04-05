@@ -1,13 +1,12 @@
 #include "CUIWindow.h"
 
 
-CUIWindow::CUIWindow(TSharedPtr<CRenderTargetWindow> InWindow, TSharedPtr<FUIWindowStyle> InStyle)
+CUIWindow::CUIWindow(TSharedPtr<CRenderTargetWindow> InWindow)
 {
 	Window = InWindow;
-	Style = InStyle;
 }
 
-TSharedPtr<CUIWindow> CUIWindow::Create(TSharedPtr<CRenderTargetWindow> InWindow, TSharedPtr<FUIWindowStyle> InStyle)
+TSharedPtr<CUIWindow> CUIWindow::Create(TSharedPtr<CRenderTargetWindow> InWindow)
 {
-	return TSharedPtr<CUIWindow>(new CUIWindow(InWindow, InStyle));
+	return TSharedPtr<CUIWindow>(new CUIWindow(InWindow));
 }

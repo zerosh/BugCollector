@@ -1,8 +1,20 @@
 #include "CUIElement.h"
 
-FTransform2D & CUIElement::GetTransform()
+const FTransform2D& CUIElement::GetTransform() const
 {
 	return Transform;
+}
+
+void CUIElement::SetSize(u32 InWidth, u32 InHeigth)
+{
+	const Vector2i Size(InWidth, InHeigth);
+	Transform.Area.Min = Size;
+	Transform.Area.Max = Size;
+}
+
+void CUIElement::SetLocation(const Vector2i &InLocation)
+{
+	Transform.Location = InLocation;
 }
 
 void CUIElement::SetEnabled(b8 InEnabled)

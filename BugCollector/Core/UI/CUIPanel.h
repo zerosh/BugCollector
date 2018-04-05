@@ -5,8 +5,5 @@ class CUIPanel : public CUIElement
 {
 private:
 public:
-	static TSharedPtr<CUIPanel> Create()
-	{
-		return TSharedPtr<CUIPanel>(new CUIPanel());
-	}
+	static TSharedPtr<CUIPanel> Create();
 };

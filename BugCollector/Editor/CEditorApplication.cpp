@@ -123,9 +123,8 @@ void CEditorApplication::Initialize()
 	second->SetCommandBuffer(CommandBuffer11);
 	gRenderContext()->Present(CommandBuffer11, second);
 
-	/* Default window style. */
-	auto DefaultWindowStyle = FUIWindowStyle::Create(CColor(1, 0, 0, 1));
-
 	/* Setting up the interface window */
-	auto Main = CUIWindow::Create(MainWindow, DefaultWindowStyle);
+	auto Main = CUIWindow::Create(MainWindow);
+	Main->SetLocation(Vector2i(100, 0));
+	Main->SetSize(100, 100);
 }
