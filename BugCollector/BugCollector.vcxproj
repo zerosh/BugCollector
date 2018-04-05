@@ -178,6 +178,7 @@
     <ClInclude Include="Core\UI\CUIElement.h" />
     <ClInclude Include="Core\UI\CUIPanel.h" />
     <ClInclude Include="Core\UI\CUIWindow.h" />
+    <ClInclude Include="Core\UI\FTransform2D.h" />
     <ClInclude Include="Core\UI\UI.h" />
     <ClInclude Include="Core\WindowManager.h" />
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />

@@ -1,5 +1,29 @@
 #include "CUIElement.h"
 
+void CUIElement::SetParent(CUIElement *InParent)
+{
+	/* Unregister this element if it has a parent */
+	if (Parent)
+	{
+		Parent->RemoveChild(this);
+	}
+
+	Parent = InParent;
+}
+
+void CUIElement::AddChild(CUIElement *InElement)
+{
+	InElement->SetParent(this);
+	InElement->SetEnabled(IsEnabled());
+	InElement->SetVisibility(IsVisible());
+
+	Children.Add(InElement);
+}
+
+void CUIElement::RemoveChild(CUIElement *InElement)
+{
+}
+
 const FTransform2D& CUIElement::GetTransform() const
 {
 	return Transform;

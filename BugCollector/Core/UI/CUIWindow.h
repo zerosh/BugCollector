@@ -15,7 +15,6 @@ private:
 
 	/* Called when the maximize button is pressed from the PlatformWindow  */
 	void OnMaximize();
-
 public:
 	CUIWindow(TSharedPtr<CRenderTargetWindow> InWindow);
 

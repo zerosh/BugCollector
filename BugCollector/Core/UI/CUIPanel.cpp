@@ -2,7 +2,7 @@
 
 
 
-TSharedPtr<CUIPanel> CUIPanel::Create()
+CUIPanel* CUIPanel::Create()
 {
-	return TSharedPtr<CUIPanel>(new CUIPanel());
+	return new CUIPanel();
 }

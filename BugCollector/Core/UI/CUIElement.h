@@ -1,17 +1,8 @@
 #pragma once
-#include "../Core.h"
-
-struct FTransform2D
-{
-	/* Location on the screen in pixels */
-	Vector2i Location;
-
-	/* The min and max extents for the area */
-	Box2Di Area;
-};
-
+#include "FTransform2D.h"
+	
 /*
-	Base ui element, contains all the most needed 
+	Base ui element
 */
 class CUIElement
 {
@@ -25,12 +16,27 @@ private:
 	/* Contains the position, and size of the element */
 	FTransform2D Transform;
 
+	/* Parent to this element */
+	CUIElement *Parent;
+
+	/* A list of all the child elements added to this element */
+	TArray<CUIElement*> Children;
 public:
 	CUIElement()
 		: bIsVisible(true)
 		, bIsEnabled(true)
 	{}
 
+	/* Set the parent to this element */
+	void SetParent(CUIElement *InParent);
+
+	/* Add a child element to this element */
+	void AddChild(CUIElement *InElement);
+
+	/* Remove a child from this element */
+	void RemoveChild(CUIElement *InElement);
+
+	/* Get the 2D transform for this element */
 	const FTransform2D& GetTransform() const;
 
 	/**
