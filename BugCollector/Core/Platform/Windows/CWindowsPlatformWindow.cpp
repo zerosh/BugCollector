@@ -43,6 +43,8 @@ CWindowsPlatformWindow::CWindowsPlatformWindow()
 	
 }
 
+FPLatformResizeInfo CWindowsPlatformWindow::ResizeInfo;
+
 void CWindowsPlatformWindow::Initialize(const FPlatformWindowCreateInfo &InPlatformWindowCreateInfo)
 {
 	HINSTANCE WindowInstance = (HINSTANCE)InPlatformWindowCreateInfo.ParentWindowHandle;

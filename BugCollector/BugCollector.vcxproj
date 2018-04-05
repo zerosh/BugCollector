@@ -155,7 +155,9 @@
     <ClInclude Include="Core\CString.h" />
     <ClInclude Include="Core\Debugging\Debug.h" />
     <ClInclude Include="Core\Delegate.h" />
+    <ClInclude Include="Core\Math\Box2D.h" />
     <ClInclude Include="Core\Math\CColor.h" />
+    <ClInclude Include="Core\Math\Math.h" />
     <ClInclude Include="Core\Math\Vector.h" />
     <ClInclude Include="Core\Platform\Platform.h" />
     <ClInclude Include="Core\Platform\Windows\CWindowsPlatformWindow.h" />
@@ -173,6 +175,11 @@
     <ClInclude Include="Core\RenderingAPI\Material\CMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\Material\IMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\RenderingAPI.h" />
+    <ClInclude Include="Core\UI\CUIElement.h" />
+    <ClInclude Include="Core\UI\CUIPanel.h" />
+    <ClInclude Include="Core\UI\CUIWindow.h" />
+    <ClInclude Include="Core\UI\FTransform2D.h" />
+    <ClInclude Include="Core\UI\UI.h" />
     <ClInclude Include="Core\WindowManager.h" />
     <ClInclude Include="Core\RenderingAPI\IRenderContext.h" />
     <ClInclude Include="Core\TArray.h" />
@@ -193,6 +200,9 @@
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />
+    <ClCompile Include="Core\UI\CUIElement.cpp" />
+    <ClCompile Include="Core\UI\CUIPanel.cpp" />
+    <ClCompile Include="Core\UI\CUIWindow.cpp" />
     <ClCompile Include="Core\WindowManager.cpp" />
     <ClCompile Include="Core\Platform\Windows\CWindowsPlatformWindow.cpp" />
     <ClCompile Include="Core\Profiler\CProfileManager.cpp" />
