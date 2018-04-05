@@ -1,6 +1,6 @@
 #pragma once
 #include "FTransform2D.h"
-	
+
 /*
 	Base ui element
 */
