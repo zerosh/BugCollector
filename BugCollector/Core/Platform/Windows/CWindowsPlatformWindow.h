@@ -46,7 +46,7 @@ public:
 	CWindowsPlatformWindow();
 	b8 bIsRunning;
 	/* When Windows is resized, holds the new Witdth, Height*/
-	static inline FPLatformResizeInfo ResizeInfo;
+	static FPLatformResizeInfo ResizeInfo;
 	/* Create the platform window. */
 	void Initialize(const FPlatformWindowCreateInfo &InPlatformWindowCreateInfo);
 	/* Get the window handle for this platform window */

@@ -66,6 +66,12 @@
     <ClCompile Include="Core\RenderingAPI\CRenderCommandBuffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\UI\CUIElement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\UI\CUIWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor\CEditorApplication.h">
@@ -177,6 +183,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Modules\DirectXAPI\CD3D11IndexBuffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UI\CUIElement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UI\CUIPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UI\CUIWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\UI\UI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
