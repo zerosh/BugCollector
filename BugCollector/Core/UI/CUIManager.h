@@ -12,6 +12,7 @@ class CUIManager : public CModule<CUIManager>
 private:
 	/* Responsible for rendering all the cameras objects */
 	TSharedPtr<CUIRenderer> Renderer;
+
 public:
 	CUIManager();
 

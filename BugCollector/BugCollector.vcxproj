@@ -175,10 +175,12 @@
     <ClInclude Include="Core\RenderingAPI\CRenderTargetWindow.h" />
     <ClInclude Include="Core\RenderingAPI\CVertexBuffer.h" />
     <ClInclude Include="Core\RenderingAPI\CVertexDeclaration.h" />
+    <ClInclude Include="Core\RenderingAPI\CViewport.h" />
     <ClInclude Include="Core\RenderingAPI\Material\CMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\Material\IMaterialCompiler.h" />
     <ClInclude Include="Core\RenderingAPI\RenderingAPI.h" />
     <ClInclude Include="Core\Scene\CCamera.h" />
+    <ClInclude Include="Core\Scene\CTransform.h" />
     <ClInclude Include="Core\UI\CUIElement.h" />
     <ClInclude Include="Core\UI\CUIManager.h" />
     <ClInclude Include="Core\UI\CUIPanel.h" />
@@ -207,8 +209,10 @@
     <ClCompile Include="Core\RenderingAPI\CRenderTarget.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexBuffer.cpp" />
     <ClCompile Include="Core\RenderingAPI\CVertexDeclaration.cpp" />
+    <ClCompile Include="Core\RenderingAPI\CViewport.cpp" />
     <ClCompile Include="Core\RenderingAPI\Material\CMaterialCompiler.cpp" />
     <ClCompile Include="Core\Scene\CCamera.cpp" />
+    <ClCompile Include="Core\Scene\CTransform.cpp" />
     <ClCompile Include="Core\UI\CUIElement.cpp" />
     <ClCompile Include="Core\UI\CUIManager.cpp" />
     <ClCompile Include="Core\UI\CUIPanel.cpp" />
