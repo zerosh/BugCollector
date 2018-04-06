@@ -90,6 +90,12 @@
     <ClCompile Include="Core\UI\CUIRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Core\RenderingAPI\CViewport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Scene\CTransform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Editor\CEditorApplication.h">
@@ -240,6 +246,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\RenderCore\IRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Scene\CTransform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\RenderingAPI\CViewport.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,7 @@
 #include "CEditorApplication.h"
 #include "../Core/UI/CUIWindow.h"
+#include "../Core/Scene/CCamera.h"
+#include "../Core/RenderingAPI/CViewport.h"
 
 void CEditorApplication::PreUpdate()
 {
@@ -127,4 +129,7 @@ void CEditorApplication::Initialize()
 	auto Main = CUIWindow::Create(MainWindow);
 	Main->SetLocation(Vector2i(100, 0));
 	Main->SetSize(100, 100);
+
+	auto MainWindowViewport = CViewport::Create(MainWindow, 0, 0, 1, 10);
+	auto MainCamera = CCamera::Create(MainWindowViewport, 1);
 }
